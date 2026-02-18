@@ -10,156 +10,95 @@ export default function SwanviTemplate({
   const lightBg = '#f0f5ff';
 
   return (
-    <>
+    <div className="template-container">
       {/* Modern Header with Gradient */}
-      <div style={{
-        background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`,
-        color: 'white',
-        padding: '20px',
-        borderRadius: '8px 8px 0 0',
-        marginBottom: '20px',
-        textAlign: 'center',
-        position: 'relative'
-      }}>
-        <div style={{ 
-          fontSize: '32px', 
-          fontWeight: 'bold', 
-          letterSpacing: '2px',
-          marginBottom: '5px'
-        }}>
-          {firm.initials}
-        </div>
-        <h2 style={{ 
-          fontSize: '24px', 
-          margin: '5px 0', 
-          fontWeight: '500',
-          textTransform: 'uppercase',
-          letterSpacing: '3px'
-        }}>
+      <div 
+        className="text-white p-3 sm:p-4 mb-4 text-center relative rounded-t-lg"
+        style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)` }}
+      >
+        <h2 className="text-xl sm:text-2xl my-1 font-medium uppercase tracking-wider">
           QUOTATION
         </h2>
-        <div style={{ 
-          fontSize: '14px', 
-          opacity: 0.9,
-          borderTop: '1px solid rgba(255,255,255,0.3)',
-          paddingTop: '8px',
-          marginTop: '8px'
-        }}>
+        <div className="text-xs sm:text-sm opacity-90 border-t border-white/30 pt-2 mt-2">
           {firm.name}
+        </div>
+        <div className="absolute top-2 right-3 text-white text-opacity-20 text-4xl sm:text-5xl font-bold">
+          {firm.initials}
         </div>
       </div>
 
       {/* Customer Box with Blue Border */}
-      <div style={{ 
-        border: `2px solid ${primaryColor}`, 
-        borderRadius: '8px',
-        marginBottom: '20px',
-        overflow: 'hidden',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 3fr' }}>
-          <div style={{ 
-            padding: '15px', 
-            background: lightBg, 
-            borderRight: `2px solid ${primaryColor}` 
-          }}>
-            <p style={{ 
-              fontWeight: 'bold', 
-              color: primaryColor, 
-              marginBottom: '10px',
-              fontSize: '14px',
-              textTransform: 'uppercase'
-            }}>
+      <div 
+        className="border-2 rounded-lg mb-4 overflow-hidden shadow-sm"
+        style={{ borderColor: primaryColor }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2">
+          <div 
+            className="p-3 sm:p-4 sm:border-r-2"
+            style={{ background: lightBg, borderColor: primaryColor }}
+          >
+            <p 
+              className="font-bold mb-2 text-xs sm:text-sm uppercase"
+              style={{ color: primaryColor }}
+            >
               CUSTOMER DETAILS:
             </p>
-            <p style={{ fontWeight: 'bold', fontSize: '13px' }}>To,</p>
-            <p style={{ 
-              fontWeight: 'bold', 
-              marginTop: '8px',
-              fontSize: '14px',
-              color: primaryColor
-            }}>
+            <p className="font-bold text-xs sm:text-sm">To,</p>
+            <p 
+              className="font-bold mt-1 text-sm sm:text-base"
+              style={{ color: primaryColor }}
+            >
               {formData.customer?.name || '_________________'}
             </p>
-            <p style={{ 
-              lineHeight: '1.5', 
-              marginTop: '8px',
-              fontSize: '13px' 
-            }}>
+            <p className="leading-relaxed mt-2 text-xs sm:text-sm">
               {formData.customer?.address || '_________________'}
             </p>
             {formData.customer?.gst && (
-              <p style={{ 
-                marginTop: '8px',
-                fontSize: '13px',
-                fontWeight: '500'
-              }}>
+              <p className="mt-2 text-xs sm:text-sm font-medium">
                 GST: {formData.customer.gst}
               </p>
             )}
           </div>
 
           <div>
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr', 
-              borderBottom: `2px solid ${primaryColor}` 
-            }}>
-              <div style={{ 
-                padding: '12px', 
-                borderRight: `2px solid ${primaryColor}`,
-                fontSize: '13px'
-              }}>
-                <span style={{ fontWeight: 'bold', color: primaryColor }}>Ref:</span> {quotationRef}
+            <div 
+              className="grid grid-cols-2 border-b-2"
+              style={{ borderColor: primaryColor }}
+            >
+              <div 
+                className="p-2 sm:p-3 text-xs sm:text-sm border-r-2"
+                style={{ borderColor: primaryColor }}
+              >
+                <span className="font-bold" style={{ color: primaryColor }}>Ref:</span> {quotationRef}
               </div>
-              <div style={{ 
-                padding: '12px',
-                fontSize: '13px'
-              }}>
-                <span style={{ fontWeight: 'bold', color: primaryColor }}>Date:</span> {date}
+              <div className="p-2 sm:p-3 text-xs sm:text-sm">
+                <span className="font-bold" style={{ color: primaryColor }}>Date:</span> {date}
               </div>
             </div>
-            <div style={{ 
-              padding: '12px', 
-              borderBottom: `2px solid ${primaryColor}`,
-              fontSize: '13px'
-            }}>
-              <span style={{ fontWeight: 'bold', color: primaryColor }}>GST No:</span> {firm.gst}
+            <div 
+              className="p-2 sm:p-3 text-xs sm:text-sm border-b-2"
+              style={{ borderColor: primaryColor }}
+            >
+              <span className="font-bold" style={{ color: primaryColor }}>GST No:</span> {firm.gst}
             </div>
-            <div style={{ 
-              padding: '15px', 
-              textAlign: 'center',
-              background: '#fafafa'
-            }}>
-              <p style={{ 
-                fontWeight: 'bold', 
-                color: primaryColor, 
-                textDecoration: 'underline',
-                marginBottom: '8px',
-                fontSize: '13px'
-              }}>
+            <div className="p-3 sm:p-4 text-center bg-gray-50">
+              <p 
+                className="font-bold underline mb-2 text-xs sm:text-sm"
+                style={{ color: primaryColor }}
+              >
                 KINDLY PLACE YOUR ORDER ON
               </p>
-              <p style={{ 
-                fontWeight: 'bold', 
-                marginTop: '8px',
-                fontSize: '14px',
-                color: primaryColor
-              }}>
+              <p 
+                className="font-bold mt-2 text-sm sm:text-base"
+                style={{ color: primaryColor }}
+              >
                 {firm.tradeName || firm.name}
               </p>
-              <p style={{ 
-                fontSize: '12px',
-                marginTop: '5px',
-                lineHeight: '1.5'
-              }}>
+              <p className="text-xs mt-1 leading-relaxed">
                 {firm.address}
               </p>
-              <p style={{ 
-                fontSize: '12px',
-                marginTop: '5px'
-              }}>
-                Phone: {firm.phone.join(', ')} | Email: {firm.email}
+              <p className="text-xs mt-1">
+                Phone: {firm.phone.join(', ')}
               </p>
             </div>
           </div>
@@ -167,200 +106,155 @@ export default function SwanviTemplate({
       </div>
 
       {/* Subject */}
-      <div style={{ marginBottom: '20px' }}>
-        <p style={{ 
-          fontSize: '13px',
-          fontWeight: '500',
-          color: primaryColor,
-          marginBottom: '8px'
-        }}>
-          Subject: Quotation for your requirement
-        </p>
-        <p style={{ fontSize: '13px', marginBottom: '5px' }}>Dear Sir/Madam,</p>
-        <p style={{ 
-          fontSize: '13px', 
-          lineHeight: '1.5',
-          color: '#333'
-        }}>
+      <div className="mb-4">
+        <p className="text-xs sm:text-sm mb-1">Dear Sir/Madam,</p>
+        <p className="text-xs sm:text-sm leading-relaxed text-gray-700">
           With reference to your inquiry, we are pleased to quote our best prices as below:
         </p>
       </div>
 
       {/* Items Table */}
-      <table style={{ 
-        width: '100%', 
-        borderCollapse: 'collapse', 
-        marginBottom: '20px',
-        boxShadow: '0 2px 5px rgba(0,0,0,0.05)'
-      }}>
-        <thead>
-          <tr style={{ 
-            background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`, 
-            color: 'white' 
-          }}>
-            <th style={{ padding: '12px 8px', border: `1px solid ${primaryColor}`, textAlign: 'center', width: '40px' }}>S.No</th>
-            <th style={{ padding: '12px 8px', border: `1px solid ${primaryColor}`, textAlign: 'left' }}>DESCRIPTION</th>
-            <th style={{ padding: '12px 8px', border: `1px solid ${primaryColor}`, textAlign: 'center', width: '60px' }}>QTY</th>
-            <th style={{ padding: '12px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', width: '100px' }}>UNIT PRICE (₹)</th>
-            <th style={{ padding: '12px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', width: '100px' }}>TOTAL (₹)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {items.length > 0 ? items.map((item, index) => (
-            <tr key={index} style={{ background: index % 2 === 0 ? '#ffffff' : '#f8faff' }}>
-              <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'center' }}>{index + 1}</td>
-              <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}` }}>
-                <span style={{ fontWeight: 'bold', color: primaryColor }}>{item.description || '_________________'}</span>
-                {item.specifications?.filter(s => s && s.trim()).length > 0 && (
-                  <div style={{ marginTop: '5px' }}>
-                    {item.specifications.map((spec, i) => 
-                      spec && spec.trim() && (
-                        <div key={i} style={{ marginLeft: '15px', fontSize: '11px', color: '#555' }}>• {spec}</div>
-                      )
-                    )}
-                  </div>
-                )}
-              </td>
-              <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'center' }}>{item.qty}</td>
-              <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right' }}>₹{Number(item.price || 0).toFixed(2)}</td>
-              <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right' }}>₹{((item.qty || 0) * (item.price || 0)).toFixed(2)}</td>
+      <div className="overflow-x-auto mb-4">
+        <table className="w-full text-xs sm:text-sm">
+          <thead>
+            <tr 
+              className="text-black"
+              style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)` }}
+            >
+              <th className="p-2 sm:p-3 text-center w-8 sm:w-10">#</th>
+              <th className="p-2 sm:p-3 text-left">DESCRIPTION</th>
+              <th className="p-2 sm:p-3 text-center w-12 sm:w-16">QTY</th>
+              <th className="p-2 sm:p-3 text-right w-20 sm:w-24">UNIT PRICE</th>
+              <th className="p-2 sm:p-3 text-right w-20 sm:w-24">TOTAL</th>
             </tr>
-          )) : (
-            <tr>
-              <td colSpan="5" style={{ padding: '30px', border: `1px solid ${primaryColor}`, textAlign: 'center', color: '#999' }}>
-                No items added
-              </td>
-            </tr>
-          )}
-
-          {items.length > 0 && (
-            <>
-              <tr style={{ background: '#f8faff' }}>
-                <td colSpan="4" style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', fontWeight: 'bold' }}>Sub-Total</td>
-                <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', fontWeight: 'bold' }}>₹{subTotal.toFixed(2)}</td>
+          </thead>
+          <tbody>
+            {items.length > 0 ? items.map((item, index) => (
+              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-blue-50'}>
+                <td className="p-2 sm:p-3 border text-center">{index + 1}</td>
+                <td className="p-2 sm:p-3 border">
+                  <span className="font-bold text-xs sm:text-sm" style={{ color: primaryColor }}>
+                    {item.description || '_________________'}
+                  </span>
+                  {item.specifications?.filter(s => s && s.trim()).length > 0 && (
+                    <div className="mt-1">
+                      {item.specifications.map((spec, i) => 
+                        spec && spec.trim() && (
+                          <div key={i} className="ml-2 sm:ml-4 text-xs text-gray-600">• {spec}</div>
+                        )
+                      )}
+                    </div>
+                  )}
+                </td>
+                <td className="p-2 sm:p-3 border text-center">{item.qty}</td>
+                <td className="p-2 sm:p-3 border text-right">₹{Number(item.price || 0).toFixed(2)}</td>
+                <td className="p-2 sm:p-3 border text-right">₹{((item.qty || 0) * (item.price || 0)).toFixed(2)}</td>
               </tr>
+            )) : (
               <tr>
-                <td colSpan="4" style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', fontWeight: 'bold' }}>GST @ 18%</td>
-                <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', fontWeight: 'bold' }}>₹{gstAmount.toFixed(2)}</td>
-              </tr>
-              <tr style={{ background: '#f8faff' }}>
-                <td colSpan="4" style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', fontWeight: 'bold' }}>Round Off</td>
-                <td style={{ padding: '10px 8px', border: `1px solid ${primaryColor}`, textAlign: 'right', fontWeight: 'bold' }}>₹{roundOff.toFixed(2)}</td>
-              </tr>
-              <tr style={{ background: lightBg }}>
-                <td colSpan="4" style={{ 
-                  padding: '12px 8px', 
-                  border: `1px solid ${primaryColor}`, 
-                  textAlign: 'right', 
-                  fontWeight: 'bold', 
-                  fontSize: '15px',
-                  color: primaryColor
-                }}>
-                  Grand Total
-                </td>
-                <td style={{ 
-                  padding: '12px 8px', 
-                  border: `1px solid ${primaryColor}`, 
-                  textAlign: 'right', 
-                  fontWeight: 'bold', 
-                  fontSize: '15px',
-                  color: primaryColor
-                }}>
-                  ₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                <td colSpan="5" className="p-4 text-center text-gray-400 border">
+                  No items added
                 </td>
               </tr>
-            </>
-          )}
-        </tbody>
-      </table>
+            )}
 
-      {/* Amount in Words */}
+            {items.length > 0 && (
+              <>
+                <tr className="bg-blue-50">
+                  <td colSpan="4" className="p-2 sm:p-3 border text-right font-bold">Sub-Total</td>
+                  <td className="p-2 sm:p-3 border text-right font-bold">₹{subTotal.toFixed(2)}</td>
+                </tr>
+                <tr>
+                  <td colSpan="4" className="p-2 sm:p-3 border text-right font-bold">GST @ 18%</td>
+                  <td className="p-2 sm:p-3 border text-right font-bold">₹{gstAmount.toFixed(2)}</td>
+                </tr>
+                <tr className="bg-blue-50">
+                  <td colSpan="4" className="p-2 sm:p-3 border text-right font-bold">Round Off</td>
+                  <td className="p-2 sm:p-3 border text-right font-bold">₹{roundOff.toFixed(2)}</td>
+                </tr>
+                <tr style={{ background: lightBg }}>
+                  <td colSpan="4" 
+                    className="p-3 border text-right font-bold text-sm sm:text-base"
+                    style={{ color: primaryColor }}
+                  >
+                    Grand Total
+                  </td>
+                  <td 
+                    className="p-3 border text-right font-bold text-sm sm:text-base"
+                    style={{ color: primaryColor }}
+                  >
+                    ₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                  </td>
+                </tr>
+              </>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Amount in Words
       {grandTotal > 0 && (
-        <p style={{ 
-          fontSize: '13px', 
-          fontWeight: 'bold', 
-          marginBottom: '20px',
-          color: primaryColor,
-          padding: '8px',
-          background: lightBg,
-          borderRadius: '4px'
-        }}>
+        <p 
+          className="text-xs sm:text-sm font-bold mb-4 p-2 sm:p-3 rounded"
+          style={{ color: primaryColor, background: lightBg }}
+        >
           Amount in words: {numberToWords(grandTotal)}
         </p>
-      )}
+      )} */}
 
       {/* Terms and Footer */}
       <div>
-        <p style={{ 
-          fontWeight: 'bold', 
-          color: primaryColor,
-          fontSize: '14px',
-          marginBottom: '5px'
-        }}>
+        <p 
+          className="font-bold text-sm sm:text-base mb-1"
+          style={{ color: primaryColor }}
+        >
           Terms and Conditions:
         </p>
-        <hr style={{ border: `1px solid ${primaryColor}`, width: '80px', margin: '5px 0 15px' }} />
         
-        <div style={{ marginBottom: '15px' }}>
-          <p style={{ fontSize: '13px', marginBottom: '5px' }}>
-            <span style={{ fontWeight: 'bold', color: primaryColor }}>• Payment:</span> {formData.terms?.payment || firm.defaultTerms.payment}
-          </p>
-          <p style={{ fontSize: '13px' }}>
-            <span style={{ fontWeight: 'bold', color: primaryColor }}>• Delivery:</span> {formData.terms?.delivery || firm.defaultTerms.delivery}
-          </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+          <div className="p-2 bg-gray-50 rounded">
+            <span className="font-bold">Payment:</span> {formData.terms?.payment || firm.defaultTerms.payment}
+          </div>
+          <div className="p-2 bg-gray-50 rounded">
+            <span className="font-bold">Delivery:</span> {formData.terms?.delivery || firm.defaultTerms.delivery}
+          </div>
         </div>
 
-        <div style={{ fontSize: '12px', color: '#555', marginBottom: '20px' }}>
-          <p>• This is a computer generated quotation and does not require signature.</p>
-          <p>• Prices are subject to change without prior notice.</p>
-          <p>• Goods once sold will not be taken back.</p>
+        <div className="text-xs text-gray-600 mb-4 space-y-1">
+          <p>• This is a computer generated quotation</p>
+          <p>• Prices are subject to change without prior notice</p>
+          <p>• Goods once sold will not be taken back</p>
         </div>
 
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          marginTop: '25px',
-          padding: '15px 0',
-          borderTop: `1px dashed ${primaryColor}`
-        }}>
-          <div style={{ fontSize: '12px' }}>
-            <p style={{ fontWeight: 'bold', color: primaryColor, marginBottom: '8px' }}>Bank Details:</p>
-            <p><span style={{ fontWeight: '500' }}>Bank:</span> {firm.bankDetails.bankName}</p>
-            <p><span style={{ fontWeight: '500' }}>A/c No:</span> {firm.bankDetails.accountNo}</p>
-            <p><span style={{ fontWeight: '500' }}>IFSC:</span> {firm.bankDetails.ifsc}</p>
-            <p><span style={{ fontWeight: '500' }}>Branch:</span> {firm.bankDetails.branch}</p>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mt-4 py-3 border-t border-dashed">
+          <div className="text-xs">
+            <p className="font-bold mb-2" style={{ color: primaryColor }}>Bank Details:</p>
+            <p>Bank: {firm.bankDetails.bankName}</p>
+            <p>A/c No: {firm.bankDetails.accountNo}</p>
+            <p>IFSC: {firm.bankDetails.ifsc}</p>
           </div>
 
-          <div style={{ textAlign: 'center' }}>
+          <div className="text-center sm:text-right w-full sm:w-auto">
             <img
               src={firm.signature}
               alt="signature"
-              style={{ maxWidth: '100px', height: 'auto', margin: '0 auto' }}
+              className="max-w-[80px] sm:max-w-[100px] h-auto mx-auto sm:mx-0"
               onError={(e) => { e.target.style.display = 'none'; }}
             />
-            <p style={{ 
-              borderTop: `2px solid ${primaryColor}`, 
-              paddingTop: '8px', 
-              marginTop: '8px', 
-              width: '160px',
-              fontWeight: 'bold',
-              color: primaryColor
-            }}>
+            <p 
+              className="border-t-2 pt-2 mt-2 font-bold text-xs sm:text-sm"
+              style={{ borderColor: primaryColor, color: primaryColor }}
+            >
               For {firm.tradeName || firm.name}
             </p>
           </div>
         </div>
 
-        <hr style={{ marginTop: '20px', border: `1px solid ${primaryColor}` }} />
-        <p style={{ 
-          textAlign: 'center', 
-          marginTop: '12px', 
-          fontSize: '11px',
-          color: '#666'
-        }}>
-          {firm.address} | Ph: {firm.phone.join(', ')} | Email: {firm.email}
+        <hr className="my-4" style={{ borderColor: primaryColor }} />
+        <p className="text-center text-xs text-gray-600">
+          {firm.address} | Ph: {firm.phone.join(', ')}
         </p>
       </div>
-    </>
+    </div>
   );
 }

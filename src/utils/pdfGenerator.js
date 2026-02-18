@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-export const downloadPDF = async (element, fileName) => {
+export const downloadPDF = async (element, fileName, options = {}) => {
   if (!element) return;
 
   try {
@@ -23,48 +23,73 @@ export const downloadPDF = async (element, fileName) => {
       })
     );
 
-    // Capture with better quality
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      logging: false,
-      allowTaint: true,
-      useCORS: true,
-      backgroundColor: '#ffffff',
-      windowWidth: 794,
-      windowHeight: element.scrollHeight
-    });
+    // Get element dimensions
+    const elementHeight = element.scrollHeight;
+    const elementWidth = element.scrollWidth;
+    
+    // Calculate pages needed (A4 height in pixels at scale 2)
+    const pageHeight = 1123; // ~297mm at 2x scale
+    const totalPages = Math.ceil(elementHeight / pageHeight);
 
-    const imgData = canvas.toDataURL('image/png');
+    // Create PDF with A4 size
     const pdf = new jsPDF({
       orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4',
+      unit: 'px',
+      format: [794, 1123], // A4 size in pixels at 96 DPI
       compress: true
     });
 
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    
-    // Calculate dimensions to fit within margins
-    const margin = 10;
-    const imgWidth = pdfWidth - (margin * 2);
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    // Capture and add each page
+    for (let i = 0; i < totalPages; i++) {
+      // Create a clone for each page
+      const clone = element.cloneNode(true);
+      clone.style.width = '794px';
+      clone.style.height = 'auto';
+      clone.style.position = 'absolute';
+      clone.style.left = '-9999px';
+      clone.style.top = '-9999px';
+      clone.style.overflow = 'visible';
+      
+      // Calculate scroll position for this page
+      const scrollTop = i * pageHeight;
+      
+      // Create a container for this page
+      const pageContainer = document.createElement('div');
+      pageContainer.style.width = '794px';
+      pageContainer.style.height = `${pageHeight}px`;
+      pageContainer.style.overflow = 'hidden';
+      pageContainer.style.position = 'relative';
+      pageContainer.style.backgroundColor = '#ffffff';
+      
+      // Position the clone to show the correct portion
+      clone.style.position = 'absolute';
+      clone.style.top = `-${scrollTop}px`;
+      clone.style.left = '0';
+      
+      pageContainer.appendChild(clone);
+      document.body.appendChild(pageContainer);
 
-    let heightLeft = imgHeight;
-    let position = margin;
-    let page = 1;
+      // Capture this page
+      const canvas = await html2canvas(pageContainer, {
+        scale: 2,
+        logging: false,
+        allowTaint: true,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        windowWidth: 794,
+        windowHeight: pageHeight
+      });
 
-    // Add first page
-    pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight, undefined, 'FAST');
-    heightLeft -= pdfHeight - (margin * 2);
+      // Add to PDF
+      if (i > 0) {
+        pdf.addPage();
+      }
+      
+      const imgData = canvas.toDataURL('image/png');
+      pdf.addImage(imgData, 'PNG', 0, 0, 794, 1123, undefined, 'FAST');
 
-    // Add additional pages if content overflows
-    while (heightLeft > 0) {
-      position = margin - (pdfHeight - (margin * 2)) * page;
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight, undefined, 'FAST');
-      heightLeft -= pdfHeight - (margin * 2);
-      page++;
+      // Clean up
+      document.body.removeChild(pageContainer);
     }
 
     // Remove loading indicator
