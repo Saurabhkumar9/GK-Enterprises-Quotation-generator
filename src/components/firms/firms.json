@@ -1,0 +1,142 @@
+{
+  "firms": [
+    {
+      "id": "gk",
+      "initials": "GK",
+      "name": "GK Enterprises",
+      "legalName": "GK Enterprises",
+      "tradeName": "GK Enterprises",
+      "gst": "09AKYPG8687K1ZW",
+      "signature": "/signatures/sign.png",
+      "address": "3/316, Vishwas Khand, Gomti Nagar, Lucknow – 226010",
+      "phone": ["9910089804", "7379974538"],
+      "email": "gkentlko@gmail.com",
+      "quotationPrefix": "GK/NG",
+      "bankDetails": {
+        "bankName": "AXIS BANK",
+        "accountNo": "924030004673222",
+        "ifsc": "UTIB0001550",
+        "branch": "GOMTI NAGAR, LUCKNOW"
+      },
+      "defaultTerms": {
+        "payment": "100% against Delivery",
+        "delivery": "8-10 days From Confirm Order"
+      }
+    },
+    {
+      "id": "swanvi",
+      "initials": "SV",
+      "name": "SWANVI TECHNOLOGIES PRIVATE LIMITED",
+      "legalName": "SWANVI TECHNOLOGIES PRIVATE LIMITED",
+      "tradeName": "NA",
+      "gst": "09ABPCS8676R1ZS",
+      "signature": "/signatures/sign-swanvi.png",
+      "address": "Your Address Here",
+      "phone": ["Contact Number"],
+      "email": "swanvi@email.com",
+      "quotationPrefix": "SV/NG",
+      "bankDetails": {
+        "bankName": "BANK NAME",
+        "accountNo": "ACCOUNT NUMBER",
+        "ifsc": "IFSC CODE",
+        "branch": "BRANCH NAME"
+      },
+      "defaultTerms": {
+        "payment": "50% advance, 50% against Delivery",
+        "delivery": "5-7 days From Confirm Order"
+      }
+    },
+    {
+      "id": "saurabh",
+      "initials": "SA",
+      "name": "SAURABH AGARWAL",
+      "legalName": "SAURABH AGARWAL",
+      "tradeName": "GURUKRIPA INFO SYSTEMS",
+      "gst": "05APGPA3564A1ZL",
+      "signature": "/signatures/sign-saurabh.png",
+      "address": "Your Address Here",
+      "phone": ["Contact Number"],
+      "email": "saurabh@email.com",
+      "quotationPrefix": "SA/QS",
+      "bankDetails": {
+        "bankName": "BANK NAME",
+        "accountNo": "ACCOUNT NUMBER",
+        "ifsc": "IFSC CODE",
+        "branch": "BRANCH NAME"
+      },
+      "defaultTerms": {
+        "payment": "100% against Delivery",
+        "delivery": "7-10 days From Confirm Order"
+      }
+    },
+    {
+      "id": "symgmatiq",
+      "initials": "SY",
+      "name": "SYGMATIQ TECHNOSOFT PRIVATE LIMITED",
+      "legalName": "SYGMATIQ TECHNOSOFT PRIVATE LIMITED",
+      "tradeName": "SYGMATIQ TECHNOSOFT PRIVATE LIMITED",
+      "gst": "09ABNCS7432H1ZV",
+      "signature": "/signatures/sign-symgmatiq.png",
+      "address": "Your Address Here",
+      "phone": ["Contact Number"],
+      "email": "symgmatiq@email.com",
+      "quotationPrefix": "SY/IN",
+      "bankDetails": {
+        "bankName": "BANK NAME",
+        "accountNo": "ACCOUNT NUMBER",
+        "ifsc": "IFSC CODE",
+        "branch": "BRANCH NAME"
+      },
+      "defaultTerms": {
+        "payment": "100% advance",
+        "delivery": "10-12 days From Confirm Order"
+      }
+    },
+    {
+      "id": "swati",
+      "initials": "ST",
+      "name": "Swati Goel",
+      "legalName": "Swati Goel",
+      "tradeName": "AS TECHNOLOGY",
+      "gst": "09CLMPG2501F1ZE",
+      "signature": "/signatures/sign-swati.png",
+      "address": "Your Address Here",
+      "phone": ["Contact Number"],
+      "email": "swati@email.com",
+      "quotationPrefix": "ST/AS",
+      "bankDetails": {
+        "bankName": "BANK NAME",
+        "accountNo": "ACCOUNT NUMBER",
+        "ifsc": "IFSC CODE",
+        "branch": "BRANCH NAME"
+      },
+      "defaultTerms": {
+        "payment": "50% against order, 50% against Delivery",
+        "delivery": "3-5 days From Confirm Order"
+      }
+    },
+    {
+      "id": "ankit",
+      "initials": "AG",
+      "name": "ANKIT GOEL (HUF)",
+      "legalName": "ANKIT GOEL (HUF)",
+      "tradeName": "ANJANI INFO SOLUTIONS",
+      "gst": "09AAWHA2501C1ZM",
+      "signature": "/signatures/sign-ankit.png",
+      "address": "Your Address Here",
+      "phone": ["Contact Number"],
+      "email": "ankit@email.com",
+      "quotationPrefix": "AG/AI",
+      "bankDetails": {
+        "bankName": "BANK NAME",
+        "accountNo": "ACCOUNT NUMBER",
+        "ifsc": "IFSC CODE",
+        "branch": "BRANCH NAME"
+      },
+      "defaultTerms": {
+        "payment": "100% against Delivery",
+        "delivery": "7-8 days From Confirm Order"
+      }
+    }
+  ]
+}

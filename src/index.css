@@ -3,71 +3,52 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 }
 
-.quotation-paper {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 15mm 15mm 15mm 15mm;
-  margin: 0 auto;
-  background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.4;
+@layer components {
+  .print\:w-\[794px\] {
+    @media print {
+      width: 794px;
+    }
+  }
+  
+  .print\:p-8 {
+    @media print {
+      padding: 2rem;
+    }
+  }
 }
 
-.quotation-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-}
-
-.quotation-table th {
-  border: 1px solid #000;
-  padding: 8px;
-  text-align: left;
-  font-weight: bold;
-  background-color: #f0f0f0;
-  font-size: 11px;
-}
-
-.quotation-table td {
-  border: 1px solid #000;
-  padding: 8px;
-  vertical-align: top;
-}
-
-.total-table {
-  width: 300px;
-  margin-left: auto;
-  border-collapse: collapse;
-}
-
-.total-table td {
-  padding: 5px 10px;
-  border: none;
-}
-
-.total-table .label {
-  font-weight: bold;
-}
-
-.total-table .amount {
-  text-align: right;
-}
-
-.grand-total {
-  font-weight: bold;
-  border-top: 2px solid #000 !important;
-}
-
-.static-text {
-  font-size: 12px;
-  margin: 15px 0;
-  line-height: 1.5;
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  .print\:p-8,
+  .print\:p-8 * {
+    visibility: visible;
+  }
+  
+  .print\:p-8 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 794px;
+  }
+  
+  button,
+  .no-print {
+    display: none !important;
+  }
 }
