@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import sign from '../public/sign.png'
+import sign from './assets/sign.png'
 
 export default function App() {
   const pdfRef = useRef();
@@ -24,12 +24,12 @@ export default function App() {
   const [date] = useState(today);
 
   const [items, setItems] = useState([
-    { 
-      description: "", 
-      specifications: [""], 
-      qty: 1, 
-      price: 0, 
-      totalWithGST: 0 
+    {
+      description: "",
+      specifications: [""],
+      qty: 1,
+      price: 0,
+      totalWithGST: 0
     },
   ]);
 
@@ -37,12 +37,12 @@ export default function App() {
   const [priceMode, setPriceMode] = useState('unit'); // 'unit' or 'total'
 
   const addItem = () => {
-    setItems([...items, { 
-      description: "", 
-      specifications: [""], 
-      qty: 1, 
-      price: 0, 
-      totalWithGST: 0 
+    setItems([...items, {
+      description: "",
+      specifications: [""],
+      qty: 1,
+      price: 0,
+      totalWithGST: 0
     }]);
   };
 
@@ -71,7 +71,7 @@ export default function App() {
   const updateItem = (index, field, value) => {
     const updated = [...items];
     updated[index][field] = value;
-    
+
     // Auto-calculate based on mode
     if (field === 'totalWithGST' && priceMode === 'total') {
       // Calculate unit price from total with GST
@@ -89,7 +89,7 @@ export default function App() {
         updated[index].totalWithGST = Number((updated[index].price * value * 1.18).toFixed(2));
       }
     }
-    
+
     setItems(updated);
   };
 
@@ -100,12 +100,12 @@ export default function App() {
       setItems(updated);
     } else {
       // Clear the first item
-      setItems([{ 
-        description: "", 
-        specifications: [""], 
-        qty: 1, 
-        price: 0, 
-        totalWithGST: 0 
+      setItems([{
+        description: "",
+        specifications: [""],
+        qty: 1,
+        price: 0,
+        totalWithGST: 0
       }]);
     }
   };
@@ -123,45 +123,69 @@ export default function App() {
 
   const downloadPDF = async () => {
     const element = pdfRef.current;
-    
+
+    // Ensure all images are loaded
+    const images = element.getElementsByTagName('img');
+    await Promise.all(Array.from(images).map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise((resolve) => {
+        img.onload = resolve;
+        img.onerror = resolve; // Resolve even on error to not block PDF generation
+      });
+    }));
+
     // Temporarily set explicit width for better capture
     const originalWidth = element.style.width;
     element.style.width = '794px';
-    
-    const canvas = await html2canvas(element, { 
+
+    const canvas = await html2canvas(element, {
       scale: 2,
       logging: false,
       allowTaint: true,
       useCORS: true,
-      backgroundColor: '#ffffff'
+      backgroundColor: '#ffffff',
+      onclone: (clonedDoc) => {
+        // Fix image paths in cloned document
+        const clonedImages = clonedDoc.getElementsByTagName('img');
+        Array.from(clonedImages).forEach(img => {
+          if (img.src && img.src.includes('blob:')) {
+            // If it's a blob URL, keep as is
+          } else if (img.src && img.src.startsWith('data:')) {
+            // If it's data URL, keep as is
+          } else {
+            // For relative paths, try to fix
+            img.crossOrigin = 'anonymous';
+          }
+        });
+      }
     });
-    
+
     // Restore original width
     element.style.width = originalWidth;
 
     const imgData = canvas.toDataURL("image/png");
-    
+
     // Calculate dimensions to fit A4 properly
     const pdf = new jsPDF({
       orientation: 'portrait',
       unit: 'mm',
       format: 'a4'
     });
-    
+
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
-    
+
     // Calculate image dimensions to fit within PDF margins
     const imgWidth = pdfWidth - 20; // 10mm margins on each side
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
+
     let heightLeft = imgHeight;
     let position = 10; // Top margin
-    
+
     // Add first page
     pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
     heightLeft -= pdfHeight - 20; // Subtract top and bottom margins
-    
+
     // Add additional pages if content overflows
     while (heightLeft > 0) {
       position = 10; // Reset position for new page
@@ -169,7 +193,7 @@ export default function App() {
       pdf.addImage(imgData, 'PNG', 10, position - (pdfHeight - 30) * (Math.ceil(imgHeight / (pdfHeight - 20)) - 1), imgWidth, imgHeight);
       heightLeft -= pdfHeight - 20;
     }
-    
+
     pdf.save(`Quotation-${gkRef}.pdf`);
   };
 
@@ -177,7 +201,7 @@ export default function App() {
   const printQuotation = () => {
     const printContent = printRef.current.innerHTML;
     const originalContent = document.body.innerHTML;
-    
+
     const printStyles = `
       <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
@@ -211,9 +235,10 @@ export default function App() {
         .grid { display: grid; }
         .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
         .specification-item { margin-left: 1rem; font-size: 0.75rem; color: #4b5563; }
+        img { max-width: 100%; height: auto; }
       </style>
     `;
-    
+
     document.body.innerHTML = printStyles + printContent;
     window.print();
     document.body.innerHTML = originalContent;
@@ -319,7 +344,7 @@ export default function App() {
                     }
                   />
                 </div>
-                
+
                 {/* Remove Item Button */}
                 <button
                   onClick={() => removeItem(itemIndex)}
@@ -386,8 +411,8 @@ export default function App() {
                       placeholder="Unit Price"
                       className="border border-black rounded-lg p-2 w-full appearance-none text-sm"
                       value={item.price}
-                      min={0}
-                      step="0.01"
+                      min={1}
+                      step="1"
                       onChange={(e) =>
                         updateItem(itemIndex, "price", Number(e.target.value))
                       }
@@ -437,8 +462,6 @@ export default function App() {
           >
             Download Quotation PDF
           </button>
-
-        
         </div>
       </div>
 
@@ -447,7 +470,7 @@ export default function App() {
         <div
           ref={pdfRef}
           className="bg-white w-full md:w-[794px] mx-auto p-6 md:p-8 text-xs md:text-sm relative print:w-[794px] print:p-8"
-          style={{ 
+          style={{
             minHeight: 'auto',
             overflow: 'visible',
             fontFamily: 'Arial, sans-serif'
@@ -465,48 +488,70 @@ export default function App() {
           </div>
 
           {/* CUSTOMER BOX */}
-          <div className="border border-black rounded-lg mt-6 grid grid-cols-1 md:grid-cols-2">
-            <div className="border-r-0 md:border-r border-black p-3">
-              <p className="font-bold">
-                CUSTOMER DETAILS:
-              </p>
-              <p className="mt-2 font-bold">
-                To- {customer.name || '_________________'}
-              </p>
-              <p className="whitespace-pre-line">
-                {customer.address || '_________________'}
-              </p>
-            </div>
+         <div className="border border-black rounded-lg mt-6 grid grid-cols-5">
+  {/* Left side - Customer Details (40%) */}
+  <div className="col-span-2 border-r border-black p-3">
+    <p className="font-bold">
+      CUSTOMER DETAILS:
+    </p>
+    <p className="mt-2 font-bold">
+      To- {customer.name || '_________________'}
+    </p>
+    <p className="whitespace-pre-line">
+      {customer.address || '_________________'}
+    </p>
+  </div>
 
-            <div className="p-3">
-              <div className="flex flex-col md:flex-row md:justify-between border-black border-b pb-3">
-                <span>GK Ref: {gkRef}</span>
-                <div className="border-r border-black"></div>
-                <span>Date : {date}</span>
-              </div>
+  {/* Right side - Other Details (60%) */}
+  <div className="col-span-3">
 
-              <div className="mt-1 border-b p-3 border-black">
-                GST No : <b>{customer.gst}</b>
-              </div>
+    {/* Row 1: GK Ref and Date in same row */}
+    <div className="grid grid-cols-2 border-b border-black">
+      <div className="p-2 border-r border-black">
+        <span className="font-semibold">GK Ref:</span> {gkRef}
+      </div>
+      <div className="p-2">
+        <span className="font-semibold">Date:</span> {date}
+      </div>
+    </div>
 
-              <div className="text-center mt-3">
-                <p className="font-bold">
-                  KINDLY PLACE YOUR ORDER ON
-                </p>
-                <div className="border-b border-black pt-2"></div>
-                <p className="font-bold mt-1">
-                  GK Enterprises
-                </p>
-                <p>
-                  3/316, Vishwas Khand, Gomti Nagar,
-                  Lucknow – 226010
-                </p>
-                <p>
-                  Phone No.: 9910089804, 7379974538,
-                  Email: gkentlko@gmail.com
-                </p>
-              </div>
-            </div>
+    {/* Row 2: GST No (Full Width) */}
+    <div className="border-b border-black p-2">
+      <span className="font-semibold">GST No:</span> {customer.gst}
+    </div>
+
+    {/* Row 3: Order Section (Full Width) */}
+    <div className="p-3 text-center">
+      <p className="font-bold underline">
+        KINDLY PLACE YOUR ORDER ON
+      </p>
+
+      <p className="font-bold mt-2">
+        GK Enterprises
+      </p>
+
+      <p>
+        3/316, Vishwas Khand, Gomti Nagar, Lucknow – 226010
+      </p>
+
+      <p>
+        Phone No.: 9910089804, 7379974538
+      </p>
+
+      <p>
+        Email: gkentlko@gmail.com
+      </p>
+    </div>
+  </div>
+</div>
+
+          <div className="pt-4">
+            <p>Subject: </p>
+            <p>Dear Sir, </p>
+            <p>
+              This is reference to our mentioned subject. We are quoting you the best price for the same. Which prices and description is
+              as mentioned below:
+            </p>
           </div>
 
           {/* TABLE */}
@@ -535,7 +580,7 @@ export default function App() {
                       <span className="font-semibold">{item.description || '_________________'}</span>
                       {item.specifications && item.specifications.some(s => s.trim() !== '') && (
                         <div className="mt-1 text-gray-600">
-                          {item.specifications.map((spec, i) => 
+                          {item.specifications.map((spec, i) =>
                             spec.trim() && (
                               <div key={i} className="specification-item">• {spec}</div>
                             )
@@ -595,15 +640,15 @@ export default function App() {
 
             <div className="mt-6 text-xs">
               <p className="font-bold">
-                Terms and Conditions
+                Terms and Conditions :
               </p>
               <div className="border-b border-black w-1/6 pb-2"></div>
               <p className="pt-2 font-bold">• Payment – 100% against Delivery</p>
               <p className="font-bold">• Delivery Period - 8-10 days From Confirm Order</p>
 
-              <p className="pt-4">• Kindly sign for the purpose overleaf in token  of your acceptance and <br/>
-return this quotation to us along with the purchase order and <br/>
-supporting documents.</p>
+              <p className="pt-4">• Kindly sign for the purpose overleaf in token  of your acceptance and <br />
+                return this quotation to us along with the purchase order and <br />
+                supporting documents.</p>
 
               <div className="flex flex-col md:flex-row justify-between mt-6 gap-4 font-bold">
                 <div>
@@ -618,10 +663,11 @@ supporting documents.</p>
 
                 <div className="text-center">
                   <div className="mt-4">
-                    <img 
-                      src={sign} 
-                      alt="signature" 
-                      className="w-32 h-auto mx-auto" 
+                    <img
+                      src={sign}
+                      alt="signature"
+                      className="w-32 h-auto mx-auto"
+                      crossOrigin="anonymous"
                     />
                     <p className="border-t border-black pt-1 mt-1 w-40 mx-auto">
                       For GK Enterprises
@@ -634,6 +680,10 @@ supporting documents.</p>
 
               <p className="text-center mt-2 text-gray-600 pb-4">
                 GK Enterprises, 3/316, Vishwas Khand, Gomti Nagar, Lucknow 226010
+              </p>
+              <p className="text-center text-gray-600 pb-4">
+                Ph. 7522089123
+                Mob: 99100 89804 Mail: gkentlko@gmail.com
               </p>
             </div>
           </div>
