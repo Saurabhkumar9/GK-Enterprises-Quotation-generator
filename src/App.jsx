@@ -412,7 +412,7 @@ export default function App() {
                       className="border border-black rounded-lg p-2 w-full appearance-none text-sm"
                       value={item.price}
                       min={1}
-                      step="1"
+                      step="0"
                       onChange={(e) =>
                         updateItem(itemIndex, "price", Number(e.target.value))
                       }
@@ -428,7 +428,7 @@ export default function App() {
                       className="border border-blue-500 rounded-lg p-2 w-full appearance-none text-sm bg-blue-50"
                       value={item.totalWithGST}
                       min={0}
-                      step="0.01"
+                      step="0"
                       onChange={(e) =>
                         updateItem(itemIndex, "totalWithGST", Number(e.target.value))
                       }
@@ -488,62 +488,62 @@ export default function App() {
           </div>
 
           {/* CUSTOMER BOX */}
-         <div className="border border-black rounded-lg mt-6 grid grid-cols-5">
-  {/* Left side - Customer Details (40%) */}
-  <div className="col-span-2 border-r border-black p-3">
-    <p className="font-bold">
-      CUSTOMER DETAILS:
-    </p>
-    <p className="mt-2 font-bold">
-      To- {customer.name || '_________________'}
-    </p>
-    <p className="whitespace-pre-line">
-      {customer.address || '_________________'}
-    </p>
-  </div>
+          <div className="border border-black rounded-lg mt-6 grid grid-cols-5">
+            {/* Left side - Customer Details (40%) */}
+            <div className="col-span-2 border-r border-black p-3">
+              <p className="font-bold">
+                CUSTOMER DETAILS:
+              </p>
+              <p className="mt-2 font-bold">
+                To- {customer.name || '_________________'}
+              </p>
+              <p className="whitespace-pre-line">
+                {customer.address || '_________________'}
+              </p>
+            </div>
 
-  {/* Right side - Other Details (60%) */}
-  <div className="col-span-3">
+            {/* Right side - Other Details (60%) */}
+            <div className="col-span-3">
 
-    {/* Row 1: GK Ref and Date in same row */}
-    <div className="grid grid-cols-2 border-b border-black">
-      <div className="p-2 border-r border-black">
-        <span className="font-semibold">GK Ref:</span> {gkRef}
-      </div>
-      <div className="p-2">
-        <span className="font-semibold">Date:</span> {date}
-      </div>
-    </div>
+              {/* Row 1: GK Ref and Date in same row */}
+              <div className="grid grid-cols-2 border-b border-black">
+                <div className="p-2 border-r border-black">
+                  <span className="font-semibold">GK Ref:</span> {gkRef}
+                </div>
+                <div className="p-2">
+                  <span className="font-semibold">Date:</span> {date}
+                </div>
+              </div>
 
-    {/* Row 2: GST No (Full Width) */}
-    <div className="border-b border-black p-2">
-      <span className="font-semibold">GST No:</span> {customer.gst}
-    </div>
+              {/* Row 2: GST No (Full Width) */}
+              <div className="border-b border-black p-2">
+                <span className="font-semibold">GST No:</span> {customer.gst}
+              </div>
 
-    {/* Row 3: Order Section (Full Width) */}
-    <div className="p-3 text-center">
-      <p className="font-bold underline">
-        KINDLY PLACE YOUR ORDER ON
-      </p>
+              {/* Row 3: Order Section (Full Width) */}
+              <div className="p-3 text-center">
+                <p className="font-bold underline">
+                  KINDLY PLACE YOUR ORDER ON
+                </p>
 
-      <p className="font-bold mt-2">
-        GK Enterprises
-      </p>
+                <p className="font-bold mt-2">
+                  GK Enterprises
+                </p>
 
-      <p>
-        3/316, Vishwas Khand, Gomti Nagar, Lucknow – 226010
-      </p>
+                <p>
+                  3/316, Vishwas Khand, Gomti Nagar, Lucknow – 226010
+                </p>
 
-      <p>
-        Phone No.: 9910089804, 7379974538
-      </p>
+                <p>
+                  Phone No.: 9910089804, 7379974538
+                </p>
 
-      <p>
-        Email: gkentlko@gmail.com
-      </p>
-    </div>
-  </div>
-</div>
+                <p>
+                  Email: gkentlko@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
 
           <div className="pt-4">
             <p>Subject: </p>
