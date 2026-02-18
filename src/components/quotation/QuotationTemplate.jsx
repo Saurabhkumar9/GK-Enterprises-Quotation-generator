@@ -15,7 +15,7 @@
 //   const firm = firms.find(f => f.id === firmId) || firms[0];
 //   const items = formData.items || [];
 //   const { subTotal, gstAmount, finalAmount, grandTotal, roundOff } = calculateTotals(items);
-  
+
 //   // Generate reference only once when component mounts or firm changes
 //   useEffect(() => {
 //     if (!refGenerated.current) {
@@ -35,14 +35,14 @@
 //       // Add a class to optimize for PDF before downloading
 //       const element = pdfRef.current;
 //       element.classList.add('pdf-optimized');
-      
+
 //       await downloadPDF(element, `${firm.initials}-${quotationRef}`, {
 //         margin: { top: 20, right: 20, bottom: 20, left: 20 },
 //         scale: 2,
 //         quality: 100,
 //         pagebreak: { mode: ['css', 'legacy'] }
 //       });
-      
+
 //       // Remove the PDF optimization class after download
 //       element.classList.remove('pdf-optimized');
 //     } catch (error) {
@@ -290,21 +290,21 @@
 //   // Number to words function
 //   const numberToWords = (num) => {
 //     if (num === 0) return 'Zero Rupees Only';
-    
+
 //     const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
 //     const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
 //     const teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
-    
+
 //     const convertLessThanThousand = (n) => {
 //       if (n === 0) return '';
-      
+
 //       let result = '';
-      
+
 //       if (n >= 100) {
 //         result += ones[Math.floor(n / 100)] + ' Hundred ';
 //         n %= 100;
 //       }
-      
+
 //       if (n >= 20) {
 //         result += tens[Math.floor(n / 10)] + ' ';
 //         n %= 10;
@@ -312,40 +312,40 @@
 //         result += teens[n - 10] + ' ';
 //         n = 0;
 //       }
-      
+
 //       if (n > 0) {
 //         result += ones[n] + ' ';
 //       }
-      
+
 //       return result;
 //     };
-    
+
 //     let result = '';
 //     let crore = Math.floor(num / 10000000);
 //     num %= 10000000;
-    
+
 //     let lakh = Math.floor(num / 100000);
 //     num %= 100000;
-    
+
 //     let thousand = Math.floor(num / 1000);
 //     num %= 1000;
-    
+
 //     if (crore > 0) {
 //       result += convertLessThanThousand(crore) + 'Crore ';
 //     }
-    
+
 //     if (lakh > 0) {
 //       result += convertLessThanThousand(lakh) + 'Lakh ';
 //     }
-    
+
 //     if (thousand > 0) {
 //       result += convertLessThanThousand(thousand) + 'Thousand ';
 //     }
-    
+
 //     if (num > 0) {
 //       result += convertLessThanThousand(num);
 //     }
-    
+
 //     return result.trim() + ' Rupees Only';
 //   };
 
@@ -530,7 +530,7 @@
 //         <div className="mt-4 text-xs" style={{ marginTop: '20px' }}>
 //           <p className="font-bold text-xs">Terms and Conditions:</p>
 //           <div className="border-b border-black" style={{ width: '80px', marginTop: '2px', borderBottom: '1px solid black' }}></div>
-          
+
 //           <div className="mt-2 space-y-1" style={{ marginTop: '8px' }}>
 //             <p className="text-xs font-semibold">• Payment: {formData.terms?.payment || firm.defaultTerms.payment}</p>
 //             <p className="text-xs font-semibold">• Delivery: {formData.terms?.delivery || firm.defaultTerms.delivery}</p>
@@ -578,10 +578,9 @@
 //   );
 // }
 
-
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { firms } from '../firms/firms.json';
+import firmsData from '../firms/firms.json';
 import { calculateTotals, generateQuotationRef } from '../../utils/calculations';
 import { downloadPDF } from '../../utils/pdfGenerator';
 import QuotationActions from './QuotationActions';
@@ -601,16 +600,23 @@ export default function QuotationTemplate({ firmId }) {
   const [quotationRef, setQuotationRef] = useState('');
   const refGenerated = useRef(false);
 
-  const firm = firms.find(f => f.id === firmId) || firms[0];
+  // Access the firms array from the imported JSON
+  const firms = firmsData.firms || firmsData;
+
+  // Find the firm by ID (case-insensitive match for flexibility)
+  const firm = firms.find(f =>
+    f.id.toLowerCase() === firmId?.toLowerCase()
+  ) || firms[0];
+
   const items = formData.items || [];
   const { subTotal, gstAmount, finalAmount, grandTotal, roundOff } = calculateTotals(items);
-  
+
   useEffect(() => {
-    if (!refGenerated.current) {
+    if (!refGenerated.current && firm?.quotationPrefix) {
       setQuotationRef(generateQuotationRef(firm.quotationPrefix));
       refGenerated.current = true;
     }
-  }, [firm.quotationPrefix]);
+  }, [firm?.quotationPrefix]);
 
   const date = new Date().toLocaleString('en-GB', {
     day: '2-digit',
@@ -632,7 +638,7 @@ export default function QuotationTemplate({ firmId }) {
     } catch (error) {
       console.error('PDF download failed:', error);
     }
-  }, [firm.initials, quotationRef]);
+  }, [firm?.initials, quotationRef]);
 
   const handlePrint = useCallback(() => {
     const printWindow = window.open('', '_blank');
@@ -753,7 +759,7 @@ export default function QuotationTemplate({ firmId }) {
     }
   }, [quotationRef]);
 
-  // Template selector based on firm ID
+  // Template selector based on firm ID (normalized to handle case differences)
   const renderTemplate = () => {
     const commonProps = {
       firm,
@@ -768,26 +774,40 @@ export default function QuotationTemplate({ firmId }) {
       pdfRef
     };
 
-    switch (firmId) {
+    // Normalize the firm ID for comparison
+    const normalizedId = firmId?.toLowerCase();
+
+    switch (normalizedId) {
       case 'swanvi':
         return <SwanviTemplate {...commonProps} />;
-      case 'saurabh':
+      case 'GURUKRIPA':
         return <SaurabhTemplate {...commonProps} />;
       case 'symgmatiq':
         return <SymgmatiqTemplate {...commonProps} />;
       case 'swati':
         return <SwatiTemplate {...commonProps} />;
-      case 'ankit':
+      case 'ankit goel (huf)':
+      case 'ankit': // Also handle 'ankit' as a shorthand
         return <AnkitTemplate {...commonProps} />;
-      case 'gk':
+      // case 'gk':
+      case 'gk': return <GKTemplate {...commonProps} />;
       default:
-        return <GKTemplate {...commonProps} />;
+        return <SaurabhTemplate {...commonProps} />;
     }
   };
 
+  // If no firm found, show error
+  if (!firm) {
+    return (
+      <div className="mt-6 p-4 bg-red-100 text-red-700 rounded">
+        Error: Firm not found with ID: {firmId}
+      </div>
+    );
+  }
+
   return (
     <div className="mt-6">
-      <QuotationActions 
+      <QuotationActions
         onDownload={handleDownloadPDF}
         onPrint={handlePrint}
       />

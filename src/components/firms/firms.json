@@ -32,14 +32,14 @@
       "gst": "09ABPCS8676R1ZS",
       "signature": "/signatures/sign-swanvi.png",
       "address": "A3/316,VISHWASH KHAND, GOMTI NAGAR, Lucknow, Lucknow, Uttar Pradesh, 226010",
-      "phone": ["Contact Number"],
-      "email": "swanvi@email.com",
+      "phone": ["07379974538"],
+      "email": "swanvitech@gmail.com",
       "quotationPrefix": "SV/NG",
       "bankDetails": {
-        "bankName": "BANK NAME",
-        "accountNo": "ACCOUNT NUMBER",
-        "ifsc": "IFSC CODE",
-        "branch": "BRANCH NAME"
+        "bankName": "Union Bank",
+        "accountNo": "521301010036884",
+        "ifsc": "UBIN0552135",
+        "branch": "GOMTI NAGAR"
       },
       "defaultTerms": {
         "payment": "100% against Delivery",
@@ -47,22 +47,22 @@
       }
     },
     {
-      "id": "saurabh",
-      "initials": "SA",
-      "name": "SAURABH AGARWAL",
-      "legalName": "SAURABH AGARWAL",
+      "id": "GURUKRIPA",
+      "initials": "GURUKRIPA",
+      "name": "GURUKRIPA INFO SYSTEMS",
+      "legalName": "GURUKRIPA INFO SYSTEMS",
       "tradeName": "GURUKRIPA INFO SYSTEMS",
       "gst": "05APGPA3564A1ZL",
       "signature": "/signatures/sign-saurabh.png",
       "address": "E/3, JK PURAM, CHOTI MUKHANI, HALDWANI, Nainital, Uttarakhand, 263139",
-      "phone": ["Contact Number"],
-      "email": "saurabh@email.com",
-      "quotationPrefix": "SA/QS",
+      "phone": ["08874800324"],
+      "email": "gurukripainfos@gmail.com ",
+      "quotationPrefix": "GK/QS",
       "bankDetails": {
-        "bankName": "BANK NAME",
-        "accountNo": "ACCOUNT NUMBER",
-        "ifsc": "IFSC CODE",
-        "branch": "BRANCH NAME"
+        "bankName": "ICICI Bank ",
+        "accountNo": "gurukripainfos@gmail.com ",
+        "ifsc": "ICIC0007340",
+        "branch": " Haldwani, Uttarakhand"
       },
       "defaultTerms": {
         "payment": "100% against Delivery",
@@ -78,14 +78,14 @@
       "gst": "09ABNCS7432H1ZV",
       "signature": "/signatures/sign-symgmatiq.png",
       "address": "B-1603, ToweB, Green Arch, Sector-Techzone-IV,, Greater Noida (West), Noida, Gautambuddha Nagar, Uttar Pradesh, 201306",
-      "phone": ["Contact Number"],
-      "email": "symgmatiq@email.com",
+      "phone": ["09717399612"],
+      "email": "sygmatiq@gmail.com",
       "quotationPrefix": "SY/IN",
       "bankDetails": {
-        "bankName": "BANK NAME",
-        "accountNo": "ACCOUNT NUMBER",
-        "ifsc": "IFSC CODE",
-        "branch": "BRANCH NAME"
+        "bankName": "ICICI Bank",
+        "accountNo": "414605002041",
+        "ifsc": "ICIC0004146",
+        "branch": "CHERRY COUNTY"
       },
       "defaultTerms": {
         "payment": "100% advance",
@@ -94,21 +94,21 @@
     },
     {
       "id": "swati",
-      "initials": "ST",
-      "name": "Swati Goel",
-      "legalName": "Swati Goel",
+      "initials": "AS",
+      "name": "AS TECHNOLOGY",
+      "legalName": "AS TECHNOLOGY",
       "tradeName": "AS TECHNOLOGY",
       "gst": "09CLMPG2501F1ZE",
       "signature": "/signatures/sign-swati.png",
       "address": "C-4 Tower,, Flat no-902, MI Rustle Court, Sector-6, Gomtinagar Extension, LUCKNOW, Lucknow, Uttar Pradesh, 226010",
-      "phone": ["Contact Number"],
-      "email": "swati@email.com",
+      "phone": ["07379974538"],
+      "email": " asteclko@gmail.com",
       "quotationPrefix": "ST/AS",
       "bankDetails": {
-        "bankName": "BANK NAME",
-        "accountNo": "ACCOUNT NUMBER",
+        "bankName": "ICICI Bank",
+        "accountNo": "353105000184",
         "ifsc": "IFSC CODE",
-        "branch": "BRANCH NAME"
+        "branch": "Jankipuram, Lucknow"
       },
       "defaultTerms": {
         "payment": "50% against order, 50% against Delivery",
@@ -116,7 +116,7 @@
       }
     },
     {
-      "id": "ankit",
+      "id": "ANKIT GOEL (HUF)",
       "initials": "AG",
       "name": "ANKIT GOEL (HUF)",
       "legalName": "ANKIT GOEL (HUF)",
@@ -124,14 +124,14 @@
       "gst": "09AAWHA2501C1ZM",
       "signature": "/signatures/sign-ankit.png",
       "address": "9th, FLAT NO-902, TOWER -C4, JACARANDA, Rustle Court, SECTOR-6, Gomti Nagar Vistar, Lucknow, Lucknow, Uttar Pradesh, 226010",
-      "phone": ["Contact Number"],
-      "email": "ankit@email.com",
+      "phone": ["06386850797"],
+      "email": " anjaniinfos@gmail.com",
       "quotationPrefix": "AG/AI",
       "bankDetails": {
-        "bankName": "BANK NAME",
-        "accountNo": "ACCOUNT NUMBER",
-        "ifsc": "IFSC CODE",
-        "branch": "BRANCH NAME"
+        "bankName": "SBI",
+        "accountNo": "41354565043",
+        "ifsc": "SBIN0003347",
+        "branch": "ASHOK MARG"
       },
       "defaultTerms": {
         "payment": "100% against Delivery",

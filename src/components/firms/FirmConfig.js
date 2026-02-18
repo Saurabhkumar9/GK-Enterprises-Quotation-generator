@@ -1,9 +1,9 @@
-import signGK from "../assets/sign.png";
-import signSwanvi from "../assets/sign-swanvi.png";
-import signSaurabh from "../assets/sign-saurabh.png";
-import signSymgmatiq from "../assets/sign-symgmatiq.png";
-import signSwati from "../assets/sign-swati.png";
-import signAnkit from "../assets/sign-ankit.png";
+import signGK from "../assets/sign.png";//gk
+import signSwanvi from "../assets/sign-swanvi.png"; //SWANVI TECHNOLOGIES PRIVATE LIMITED
+import signSaurabh from "../assets/sign-saurabh.png"; //GURUKRIPA
+import signSymgmatiq from "../assets/sign-symgmatiq.png"; //SYGMATIQ TECHNOSOFT PRIVATE LIMITED
+import signSwati from "../assets/sign-swati.png"; //AS TECHNOLOGY
+import signAnkit from "../assets/sign-ankit.png";  //ANJANI INFO SOLUTIONS 
 
 export const signatures = {
   gk: signGK,
