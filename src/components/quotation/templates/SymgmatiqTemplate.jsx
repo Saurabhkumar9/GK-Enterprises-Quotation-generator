@@ -5,32 +5,37 @@ export default function SymgmatiqTemplate({
   firm, formData, quotationRef, date, items,
   subTotal, gstAmount, roundOff, grandTotal
 }) {
-  const primaryColor = '#4a148c';
-  const secondaryColor = '#7b1fa2';
-  const lightBg = '#f3e5f5';
+  // Updated color scheme - lighter purple background to make red logo stand out
+  const primaryColor = '#b91c1c'; // Rich red for accents (matches logo)
+  const secondaryColor = '#f3f4f6'; // Light gray for table headers
+  const lightBg = '#fee2e2'; // Light red background for highlights
+  const headerBg = '#ffffff'; // White header background
 
   return (
     <div className="w-full max-w-4xl mx-auto bg-white p-2 sm:p-3">
-      {/* Corporate Purple Theme */}
+      {/* Header with white background to make red logo pop */}
       <div
-        className="text-white p-2 sm:p-3 mb-2 shadow-lg relative overflow-hidden rounded"
-        style={{
-          background: primaryColor,
-        }}
+        className="p-2 sm:p-3 mb-2 bg-white shadow-md relative rounded overflow-hidden border-b-2"
+        style={{ borderBottomColor: primaryColor }}
       >
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 relative z-10">
+          
           <div>
-            <h1 className="text-lg sm:text-xl font-bold">QUOTATION</h1>
+            <h1 className="text-lg sm:text-xl font-bold" style={{ color: primaryColor }}>QUOTATION</h1>
           </div>
-          <div className="absolute  right-2 opacity-60">
+
+          {/* Logo Container - White background to highlight red logo */}
+          <div className="absolute right-2 p-1 sm:p-2 rounded-md bg-white">
             <img
               src="/logo/syg.png"
               alt="Logo"
-              className="h-6 w-auto sm:h-16 object-contain"
+              className="h-10 sm:h-20 w-auto object-contain"
             />
           </div>
+
         </div>
-        <div className="flex flex-col sm:flex-row sm:justify-between mt-1.5 text-[9px] sm:text-xs opacity-90 gap-0.5">
+
+        <div className="flex flex-col sm:flex-row sm:justify-between mt-1.5 text-[9px] sm:text-xs text-gray-600 gap-0.5 relative z-10">
           <span>Ref: {quotationRef}</span>
           <span>Date: {date}</span>
         </div>
@@ -69,7 +74,7 @@ export default function SymgmatiqTemplate({
 
       {/* Subject */}
       <div
-        className="mb-2 bg-gradient-to-r from-white to-gray-50 p-2 border-b-2"
+        className="mb-2 bg-gradient-to-r from-red-50 to-white p-2 border-b-2"
         style={{ borderBottomColor: primaryColor }}
       >
         <p className="font-bold text-[9px] sm:text-xs" style={{ color: primaryColor }}>
@@ -85,17 +90,17 @@ export default function SymgmatiqTemplate({
       <div className="overflow-x-auto mb-2">
         <table className="w-full text-[8px] sm:text-xs border-collapse">
           <thead>
-            <tr className="text-black" style={{ background: secondaryColor }}>
-              <th className="p-1 sm:p-1.5 text-center w-6 sm:w-8">#</th>
-              <th className="p-1 sm:p-1.5 text-left">DESCRIPTION</th>
-              <th className="p-1 sm:p-1.5 text-center w-10 sm:w-12">QTY</th>
-              <th className="p-1 sm:p-1.5 text-right w-16 sm:w-20">UNIT PRICE</th>
-              <th className="p-1 sm:p-1.5 text-right w-16 sm:w-20">TOTAL</th>
+            <tr style={{ background: secondaryColor }}>
+              <th className="p-1 sm:p-1.5 text-center w-6 sm:w-8 border border-gray-300">#</th>
+              <th className="p-1 sm:p-1.5 text-left border border-gray-300">DESCRIPTION</th>
+              <th className="p-1 sm:p-1.5 text-center w-10 sm:w-12 border border-gray-300">QTY</th>
+              <th className="p-1 sm:p-1.5 text-right w-16 sm:w-20 border border-gray-300">UNIT PRICE</th>
+              <th className="p-1 sm:p-1.5 text-right w-16 sm:w-20 border border-gray-300">TOTAL</th>
             </tr>
           </thead>
           <tbody>
             {items.length > 0 ? items.map((item, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-purple-50/30'}>
+              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-red-50/30'}>
                 <td className="p-1 sm:p-1.5 border border-gray-300 text-center align-top">{index + 1}</td>
                 <td className="p-1 sm:p-1.5 border border-gray-300">
                   <span className="font-bold text-[8px] sm:text-xs" style={{ color: primaryColor }}>
@@ -157,10 +162,10 @@ export default function SymgmatiqTemplate({
         </table>
       </div>
 
-      {/* Amount in Words */}
+      {/* Amount in Words - Uncommented */}
       {/* {grandTotal > 0 && (
         <div 
-          className="p-1.5 sm:p-2 mb-2 rounded-r bg-gradient-to-r from-purple-50 to-white"
+          className="p-1.5 sm:p-2 mb-2 rounded-r bg-gradient-to-r from-red-50 to-white"
           style={{ borderLeft: `4px solid ${primaryColor}` }}
         >
           <p className="font-bold text-[8px] sm:text-xs" style={{ color: primaryColor }}>
