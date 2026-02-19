@@ -24,22 +24,15 @@ export default function SymgmatiqTemplate({
 
             <h1 className="text-xl sm:text-2xl font-bold mt-1">QUOTATION</h1>
           </div>
-          <div
-            className="bg-white px-3 py-1 sm:px-4 sm:py-2 rounded-full font-bold text-xl sm:text-2xl shadow"
-            style={{ color: primaryColor }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 200 200"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <polygon points="40,40 140,100 40,160" fill="black" />
-              <polygon points="80,40 180,100 80,160" fill="black" />
-              <polygon points="60,60 130,100 60,140" fill="#e5093f" />
-              <polygon points="100,60 170,100 100,140" fill="#e5093f" />
-            </svg>
-          </div>
+         <div
+          className="absolute  right-4 opacity-60"
+        >
+          <img
+            src="/logo/syg.png"
+            alt="Logo"
+            className="h-8 w-auto sm:h-20 object-contain"
+          />
+        </div>
         </div>
         <div className="flex flex-col sm:flex-row sm:justify-between mt-3 text-xs sm:text-sm opacity-90 gap-1">
           <span>Ref: {quotationRef}</span>
@@ -84,7 +77,7 @@ export default function SymgmatiqTemplate({
         style={{ borderBottomColor: primaryColor }}
       >
         <p className="font-bold text-xs sm:text-sm" style={{ color: primaryColor }}>
-          Subject: Quotation for your requirement
+          Subject: 
         </p>
         <p className="mt-2 text-xs sm:text-sm">Dear Sir/Madam,</p>
         <p className="mt-1 text-xs sm:text-sm leading-relaxed">

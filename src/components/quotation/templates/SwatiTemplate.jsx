@@ -15,19 +15,23 @@ export default function SwatiTemplate({
       <div className="border-2 p-4 sm:p-5 mb-4 rounded-t-xl rounded-br-xl relative shadow-sm"
         style={{ borderColor: primaryColor, background: lightBg }}
       >
-        <div className="absolute top-3 right-4 text-2xl sm:text-3xl font-bold italic opacity-60"
-          style={{ color: primaryColor }}>
-          {firm.initials}
+        <div
+          className="absolute top-3 right-4 opacity-60"
+        >
+          <img
+            src="/logo/as.png"
+            alt="Logo"
+            className="h-8 w-auto sm:h-20 object-contain"
+          />
         </div>
+
 
         <h2 className="text-center text-xl sm:text-2xl font-light tracking-wider uppercase"
           style={{ color: primaryColor }}>
           Quotation
         </h2>
 
-        <div className="text-center text-xs sm:text-sm italic mt-1 text-gray-600">
-          {firm.name}
-        </div>
+       
 
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-8 mt-3 text-xs">
           <span>Ref: {quotationRef}</span>
@@ -211,7 +215,7 @@ export default function SwatiTemplate({
           style={{ color: primaryColor }}>
           Terms & Conditions
         </h3>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
           <div className="bg-white p-2 rounded border">
             <span className="font-bold text-xs" style={{ color: primaryColor }}>Payment:</span>

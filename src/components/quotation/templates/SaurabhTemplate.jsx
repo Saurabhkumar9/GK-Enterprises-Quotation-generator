@@ -27,12 +27,15 @@ export default function SaurabhTemplate({
             <p className="text-xs text-gray-600">{firm.address}</p>
           </div>
 
-          <div
-            className="text-white px-3 sm:px-4 py-1 rounded font-bold text-lg sm:text-xl"
-            style={{ background: primaryColor }}
-          >
-            {firm.initials}
-          </div>
+        <div
+          className="absolute top-3 right-4 opacity-60"
+        >
+          <img
+            src="/logo/guru.png"
+            alt="Logo"
+            className="h-8 w-auto sm:h-20 object-contain"
+          />
+        </div>
         </div>
 
         <h2
