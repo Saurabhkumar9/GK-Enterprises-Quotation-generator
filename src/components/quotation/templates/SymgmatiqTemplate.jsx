@@ -15,31 +15,46 @@ export default function SymgmatiqTemplate({
     <div className="w-full max-w-4xl mx-auto bg-white p-2 sm:p-3">
       {/* Header with white background to make red logo pop */}
       <div
-        className="p-2 sm:p-3 mb-2 bg-white shadow-md relative rounded overflow-hidden border-b-2"
-        style={{ borderBottomColor: primaryColor }}
-      >
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 relative z-10">
-          
-          <div>
-            <h1 className="text-lg sm:text-xl font-bold" style={{ color: primaryColor }}>QUOTATION</h1>
-          </div>
+  className="p-2 sm:p-3 mb-2 bg-white shadow-md relative rounded overflow-hidden border-b-2"
+  style={{ borderBottomColor: primaryColor }}
+>
+  <div className="relative flex items-center justify-between">
 
-          {/* Logo Container - White background to highlight red logo */}
-          <div className="absolute right-2 p-1 sm:p-2 rounded-md bg-white">
-            <img
-              src="/logo/syg.png"
-              alt="Logo"
-              className="h-10 sm:h-20 w-auto object-contain"
-            />
-          </div>
+    {/* Left Side - QUOTATION */}
+    <h1
+      className="text-lg sm:text-xl font-bold z-10"
+      style={{ color: primaryColor }}
+    >
+      QUOTATION
+    </h1>
 
-        </div>
+    {/* Center - Company Name */}
+    <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+      <h2 className="text-sm sm:text-lg font-bold  tracking-wide" style={{ color: primaryColor }}>
+        SYGMATIQ TECHNOSOFT PVT. LTD.
+      </h2>
+      <p className="text-[2px] sm:text-xs text-black font-medium tracking-wider">
+        BETTER SERVICE, BETTER PRODUCT
+      </p>
+    </div>
 
-        <div className="flex flex-col sm:flex-row sm:justify-between mt-1.5 text-[9px] sm:text-xs text-gray-600 gap-0.5 relative z-10">
-          <span>Ref: {quotationRef}</span>
-          <span>Date: {date}</span>
-        </div>
-      </div>
+    {/* Right Side - Logo */}
+    <div className="z-10">
+      <img
+        src="/logo/syg.png"
+        alt="Logo"
+        className="h-10 sm:h-16 w-auto object-contain"
+      />
+    </div>
+  </div>
+
+  {/* Bottom Info Row */}
+  <div className="flex flex-col sm:flex-row sm:justify-between mt-2 text-[9px] sm:text-xs text-gray-600 gap-0.5">
+    <span>Ref: {quotationRef}</span>
+    <span>Date: {date}</span>
+  </div>
+</div>
+
 
       {/* Customer Card */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-2">
@@ -50,7 +65,7 @@ export default function SymgmatiqTemplate({
             borderLeft: `4px solid ${primaryColor}`
           }}
         >
-          <h3 className="text-xs sm:text-sm font-bold mb-1" style={{ color: primaryColor }}>BILL TO</h3>
+          <h3 className="text-xs sm:text-sm font-bold mb-1" style={{ color: primaryColor }}>CUSTOMER DETAILS:</h3>
           <p className="font-bold text-xs sm:text-sm">{formData.customer?.name || ''}</p>
           <p className="text-[9px] sm:text-xs leading-snug mt-0.5">{formData.customer?.address || ''}</p>
           {formData.customer?.gst && (

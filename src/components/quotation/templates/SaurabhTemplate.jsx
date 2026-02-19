@@ -65,7 +65,7 @@ export default function SaurabhTemplate({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2">
           <div className="sm:pr-2 sm:border-r" style={{ borderColor: primaryColor }}>
             <p className="font-semibold mt-2 text-[10px] sm:text-xs" style={{ color: primaryColor }}>
-              Bill To:
+            CUSTOMER DETAILS:
             </p>
             <p className="font-medium text-xs sm:text-sm">
               {formData.customer?.name || ''}
