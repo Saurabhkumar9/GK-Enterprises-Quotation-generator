@@ -1,212 +1,110 @@
 import React from 'react';
 import { numberToWords } from '../../../utils/numberToWords';
 
-export default function GKTemplate({ 
-  firm, formData, quotationRef, date, items, 
-  subTotal, gstAmount, roundOff, grandTotal 
+export default function GKTemplate({
+  firm, formData, quotationRef, date, items,
+  subTotal, gstAmount, roundOff, grandTotal
 }) {
   return (
     <>
       {/* Header with Firm Initials - Always on Right */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: '25px',
-          right: '25px',
-          color: '#b91c1c',
-          fontSize: '36px',
-          fontWeight: 'bold',
-          zIndex: 10,
-          letterSpacing: '1px'
-        }}
-      >
+      <div className="absolute top-[25px] right-[25px] text-red-700 text-4xl font-bold z-10 tracking-wide">
         {firm.initials}
       </div>
 
       {/* Quotation Title - Perfectly Centered */}
-      <div style={{ 
-        textAlign: 'center', 
-        marginTop: '15px', 
-        marginBottom: '30px',
-        width: '100%',
-        position: 'relative',
-        zIndex: 1
-      }}>
-        <h2 style={{ 
-          fontSize: '24px', 
-          fontWeight: 'bold',
-          margin: 0,
-          textTransform: 'uppercase',
-          letterSpacing: '2px'
-        }}>
+      <div className="text-center mt-[15px] mb-[30px] w-full relative z-1">
+        <h2 className="text-xl font-bold m-0 uppercase tracking-wider">
           QUOTATION
         </h2>
-        <div style={{ 
-          borderBottom: '2px solid black', 
-          width: '120px',
-          margin: '8px auto 0'
-        }}></div>
+        <div className="border-b-2 border-black w-[120px] mx-auto mt-2"></div>
       </div>
 
-      {/* Customer Box */}
-      <div style={{ 
-        border: '1px solid black', 
-        borderRadius: '4px', 
-        marginTop: '16px',
-        display: 'grid',
-        gridTemplateColumns: '2fr 3fr',
-        fontSize: '12px'
-      }}>
-        <div style={{ 
-          borderRight: '1px solid black', 
-          padding: '8px'
-        }}>
-          <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>CUSTOMER DETAILS:</p>
-          <p style={{ marginTop: '4px', fontWeight: 'bold' }}>To,</p>
-          <p style={{ fontWeight: 'bold', marginTop: '4px' }}>{formData.customer?.name || '_________________'}</p>
-          <p style={{ lineHeight: '1.4', marginTop: '4px' }}>{formData.customer?.address || '_________________'}</p>
+      <div className="border border-black rounded mt-3 grid grid-cols-[2fr_3fr] text-xs leading-tight">
+
+        {/* Left Side */}
+        <div className="border-r border-black p-1.5">
+          <p className="font-bold mb-2">CUSTOMER DETAILS:</p>
+          <p className="font-bold">To,</p>
+          <p className="font-bold">{formData.customer?.name || ''}</p>
+          <p>{formData.customer?.address || ''}</p>
           {formData.customer?.gst && (
-            <p style={{ marginTop: '4px' }}>GST: {formData.customer.gst}</p>
+            <p>GST: {formData.customer.gst}</p>
           )}
         </div>
 
+        {/* Right Side */}
         <div>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '1fr 1fr', 
-            borderBottom: '1px solid black' 
-          }}>
-            <div style={{ 
-              padding: '8px', 
-              borderRight: '1px solid black' 
-            }}>
-              <span style={{ fontWeight: '600' }}>Ref:</span> {quotationRef}
+          <div className="grid grid-cols-2 border-b border-black">
+            <div className="p-1.5 border-r border-black">
+              <span className="font-semibold">Ref:</span> {quotationRef}
             </div>
-            <div style={{ padding: '8px' }}>
-              <span style={{ fontWeight: '600' }}>Date:</span> {date}
+            <div className="p-1.5">
+              <span className="font-semibold">Date:</span> {date}
             </div>
           </div>
 
-          <div style={{ 
-            borderBottom: '1px solid black', 
-            padding: '8px' 
-          }}>
-            <span style={{ fontWeight: '600' }}>GST No:</span> {firm.gst}
+          <div className="border-b border-black p-1.5">
+            <span className="font-semibold">GST No:</span> {firm.gst}
           </div>
 
-          <div style={{ 
-            padding: '8px', 
-            textAlign: 'center' 
-          }}>
-            <p style={{ fontWeight: 'bold', textDecoration: 'underline' }}>KINDLY PLACE YOUR ORDER ON</p>
-            <p style={{ fontWeight: 'bold', marginTop: '4px' }}>{firm.tradeName || firm.name}</p>
-            <p style={{ lineHeight: '1.4' }}>{firm.address}</p>
-            <p>Phone: {firm.phone.join(', ')}</p>
-            <p>Email: {firm.email}</p>
+          <div className="px-1 py-1 text-center text-[11px] leading-[1.2]">
+            <p className="font-bold m-0">KINDLY PLACE YOUR ORDER ON</p>
+            <p className="font-bold m-0">{firm.tradeName || firm.name}</p>
+            <p className="m-0">{firm.address}</p>
+            <p className="m-0">Phone: {firm.phone.join(', ')}</p>
+            <p className="m-0">Email: {firm.email}</p>
           </div>
+
         </div>
+
       </div>
 
+
       {/* Subject Line */}
-      <div style={{ marginTop: '16px' }}>
-        <p style={{ fontSize: '12px' }}>Subject: </p>
-        <p style={{ fontSize: '12px' }}>Dear Sir/Madam,</p>
-        <p style={{ fontSize: '12px', lineHeight: '1.4' }}>
+      <div className="mt-4">
+        <p className="text-xs">Subject: </p>
+        <p className="text-xs">Dear Sir/Madam,</p>
+        <p className="text-xs ">
           This is reference to our mentioned subject. We are quoting you the best price for the same. Which prices and description is as mentioned below:
         </p>
       </div>
 
       {/* Items Table */}
-      <div style={{ marginTop: '12px', overflowX: 'auto' }}>
-        <table style={{ 
-          width: '100%', 
-          borderCollapse: 'collapse',
-          fontSize: '12px'
-        }}>
+      <div className="mt-2 overflow-x-auto">
+        <table className="w-full border-collapse text-xs">
           <thead>
             <tr>
-              <th style={{ 
-                border: '1px solid black', 
-                padding: '8px', 
-                textAlign: 'center',
-                width: '40px'
-              }}>S.No</th>
-              <th style={{ 
-                border: '1px solid black', 
-                padding: '8px', 
-                textAlign: 'left'
-              }}>DESCRIPTION</th>
-              <th style={{ 
-                border: '1px solid black', 
-                padding: '8px', 
-                textAlign: 'center',
-                width: '50px'
-              }}>QTY</th>
-              <th style={{ 
-                border: '1px solid black', 
-                padding: '8px', 
-                textAlign: 'right',
-                width: '90px'
-              }}>UNIT PRICE (₹)</th>
-              <th style={{ 
-                border: '1px solid black', 
-                padding: '8px', 
-                textAlign: 'right',
-                width: '90px'
-              }}>TOTAL (₹)</th>
+              <th className="border border-black p-2 text-center w-10">S.No</th>
+              <th className="border border-black p-2 text-left">DESCRIPTION</th>
+              <th className="border border-black p-2 text-center w-[50px]">QTY</th>
+              <th className="border border-black p-2 text-right w-[90px]">UNIT PRICE (₹)</th>
+              <th className="border border-black p-2 text-right w-[90px]">TOTAL (₹)</th>
             </tr>
           </thead>
           <tbody>
             {items.length > 0 ? items.map((item, index) => (
               <tr key={index}>
-                <td style={{ 
-                  border: '1px solid black', 
-                  padding: '8px', 
-                  textAlign: 'center',
-                  verticalAlign: 'top'
-                }}>{index + 1}</td>
-                <td style={{ 
-                  border: '1px solid black', 
-                  padding: '8px'
-                }}>
-                  <span style={{ fontWeight: '600' }}>{item.description || '_________________'}</span>
+                <td className="border border-black p-2 text-center align-top">{index + 1}</td>
+                <td className="border border-black p-2">
+                  <span className="font-semibold">{item.description || ''}</span>
                   {item.specifications?.filter(s => s && s.trim()).length > 0 && (
-                    <div style={{ marginTop: '4px', color: '#4b5563' }}>
-                      {item.specifications.map((spec, i) => 
+                    <div className="mt-1 text-gray-600">
+                      {item.specifications.map((spec, i) =>
                         spec && spec.trim() && (
-                          <div key={i} style={{ marginLeft: '16px', fontSize: '11px' }}>• {spec}</div>
+                          <div key={i} className="ml-4 text-[11px]">• {spec}</div>
                         )
                       )}
                     </div>
                   )}
                 </td>
-                <td style={{ 
-                  border: '1px solid black', 
-                  padding: '8px', 
-                  textAlign: 'center',
-                  verticalAlign: 'top'
-                }}>{item.qty}</td>
-                <td style={{ 
-                  border: '1px solid black', 
-                  padding: '8px', 
-                  textAlign: 'right',
-                  verticalAlign: 'top'
-                }}>₹{Number(item.price || 0).toFixed(2)}</td>
-                <td style={{ 
-                  border: '1px solid black', 
-                  padding: '8px', 
-                  textAlign: 'right',
-                  verticalAlign: 'top'
-                }}>₹{((item.qty || 0) * (item.price || 0)).toFixed(2)}</td>
+                <td className="border border-black p-2 text-center align-top">{item.qty}</td>
+                <td className="border border-black p-2 text-right align-top">₹{Number(item.price || 0).toFixed(2)}</td>
+                <td className="border border-black p-2 text-right align-top">₹{((item.qty || 0) * (item.price || 0)).toFixed(2)}</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan="5" style={{ 
-                  border: '1px solid black', 
-                  padding: '16px', 
-                  textAlign: 'center',
-                  color: '#9ca3af'
-                }}>
+                <td colSpan="5" className="border border-black p-4 text-center text-gray-400">
                   No items added
                 </td>
               </tr>
@@ -215,59 +113,22 @@ export default function GKTemplate({
             {items.length > 0 && (
               <>
                 <tr>
-                  <td colSpan="4" style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    textAlign: 'right',
-                    fontWeight: '500'
-                  }}>Sub-Total</td>
-                  <td style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    textAlign: 'right'
-                  }}>₹{subTotal.toFixed(2)}</td>
+                  <td colSpan="4" className="border border-black p-2 text-right font-medium">Sub-Total</td>
+                  <td className="border border-black p-2 text-right">₹{subTotal.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td colSpan="4" style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    textAlign: 'right',
-                    fontWeight: '500'
-                  }}>GST @ 18%</td>
-                  <td style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    textAlign: 'right'
-                  }}>₹{gstAmount.toFixed(2)}</td>
+                  <td colSpan="4" className="border border-black p-2 text-right font-medium">GST @ 18%</td>
+                  <td className="border border-black p-2 text-right">₹{gstAmount.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td colSpan="4" style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    textAlign: 'right',
-                    fontWeight: '500'
-                  }}>Round Off</td>
-                  <td style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    textAlign: 'right'
-                  }}>₹{roundOff.toFixed(2)}</td>
+                  <td colSpan="4" className="border border-black p-2 text-right font-medium">Round Off</td>
+                  <td className="border border-black p-2 text-right">₹{roundOff.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td colSpan="4" style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    fontWeight: 'bold',
-                    textAlign: 'right',
-                    backgroundColor: '#f9fafb'
-                  }}>Grand Total</td>
-                  <td style={{ 
-                    border: '1px solid black', 
-                    padding: '8px', 
-                    fontWeight: 'bold',
-                    textAlign: 'right',
-                    backgroundColor: '#f9fafb'
-                  }}>₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                  <td colSpan="4" className="border border-black p-2 font-bold text-right bg-gray-50">Grand Total</td>
+                  <td className="border border-black p-2 font-bold text-right bg-gray-50">
+                    ₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  </td>
                 </tr>
               </>
             )}
@@ -277,67 +138,64 @@ export default function GKTemplate({
 
       {/* Amount in Words */}
       {grandTotal > 0 && (
-        <p style={{ fontSize: '12px', marginTop: '12px', fontWeight: '600' }}>
+        <p className="text-xs mt-3 font-semibold">
           Amount in words: {numberToWords(grandTotal)}
         </p>
       )}
 
       {/* Terms and Footer */}
-      <div style={{ marginTop: '20px', fontSize: '12px' }}>
-        <p style={{ fontWeight: 'bold' }}>Terms and Conditions:</p>
-        <div style={{ width: '80px', marginTop: '2px', borderBottom: '1px solid black' }}></div>
-        
-        <div style={{ marginTop: '8px' }}>
-          <p style={{ fontWeight: '600' }}>• Payment: {formData.terms?.payment || firm.defaultTerms.payment}</p>
-          <p style={{ fontWeight: '600' }}>• Delivery: {formData.terms?.delivery || firm.defaultTerms.delivery}</p>
+      <div className="mt-2 text-xs">
+        <p className="font-bold">Terms and Conditions:</p>
+        <div className="w-20 mt-0.5 border-b border-black"></div>
+
+        <div className="mt-2">
+          <p className="font-semibold">• Payment: {formData.terms?.payment || firm.defaultTerms.payment}</p>
+          <p className="font-semibold">• Delivery: {formData.terms?.delivery || firm.defaultTerms.delivery}</p>
         </div>
 
-        <p style={{ marginTop: '12px' }}>• This is a computer generated quotation and does not require signature.</p>
+        <p className="mt-3">• This is a computer generated quotation and does not require signature.</p>
         <p>• Prices are subject to change without prior notice.</p>
         <p>• Goods once sold will not be taken back.</p>
 
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          marginTop: '20px',
-          gap: '12px'
-        }}>
-          <div style={{ fontSize: '12px' }}>
-            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>Bank Details:</p>
+        <div className="flex justify-between mt-2 gap-3 no-break">
+          <div className="text-xs">
+            <p className="font-bold mb-1">Bank Details:</p>
             <p>Bank: {firm.bankDetails.bankName}</p>
             <p>A/c No: {firm.bankDetails.accountNo}</p>
             <p>IFSC: {firm.bankDetails.ifsc}</p>
             <p>Branch: {firm.bankDetails.branch}</p>
           </div>
 
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ marginTop: '8px' }}>
+          <div className="text-center ">
+            <div className="mt-2">
               <img
                 src={firm.signature}
                 alt="signature"
-                style={{ maxWidth: '96px', height: 'auto', margin: '0 auto' }}
+                className="max-w-[96px] h-auto mx-auto"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
               />
-              <p style={{ 
-                borderTop: '1px solid black', 
-                paddingTop: '4px', 
-                marginTop: '4px', 
-                width: '128px', 
-                marginLeft: 'auto', 
-                marginRight: 'auto' 
-              }}>
+              <p className="border-t border-black pt-1 mt-1 w-32 mx-auto">
                 For {firm.tradeName || firm.name}
               </p>
             </div>
           </div>
         </div>
 
-        <hr style={{ marginTop: '20px', border: 'none', borderTop: '1px solid black' }} />
-        <p style={{ textAlign: 'center', marginTop: '8px', color: '#4b5563' }}>
-          {firm.address} | Ph: {firm.phone.join(', ')} | Email: {firm.email}
-        </p>
+
+        <div className="mt-2 text-xs no-break">
+
+          <div className="no-break">
+            <hr className="mt-5 border-t border-black" />
+
+            <p className="text-center mt-2 text-gray-600">
+              {firm.address} | Ph: {firm.phone.join(', ')} | Email: {firm.email}
+            </p>
+          </div>
+
+        </div>
+
       </div>
     </>
   );

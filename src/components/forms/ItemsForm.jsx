@@ -59,10 +59,14 @@ export default function ItemsForm() {
   };
 
   const calculateTotal = (itemIndex, field, value) => {
+    // Remove leading zeros and ensure it's a valid number
+    const cleanValue = value === '' ? '0' : value.replace(/^0+/, '') || '0';
+    const numValue = parseFloat(cleanValue) || 0;
+    
     const item = getValues(`items.${itemIndex}`);
-    const qty = field === 'qty' ? Number(value) : Number(item.qty) || 0;
-    const price = field === 'price' ? Number(value) : Number(item.price) || 0;
-    const totalWithGST = field === 'totalWithGST' ? Number(value) : Number(item.totalWithGST) || 0;
+    const qty = field === 'qty' ? numValue : Number(item.qty) || 0;
+    const price = field === 'price' ? numValue : Number(item.price) || 0;
+    const totalWithGST = field === 'totalWithGST' ? numValue : Number(item.totalWithGST) || 0;
 
     if (priceMode === 'unit') {
       const newTotal = (price * qty * 1.18).toFixed(2);
@@ -81,9 +85,68 @@ export default function ItemsForm() {
     }
   };
 
+  // Handle input change with leading zero prevention
+  const handleNumberChange = (e, itemIndex, field) => {
+    let value = e.target.value;
+    
+    // Remove leading zeros
+    if (value.length > 1 && value.startsWith('0') && !value.startsWith('0.')) {
+      value = value.replace(/^0+/, '');
+    }
+    
+    // Ensure it's a valid number
+    if (value === '' || value === '-') {
+      setValue(`items.${itemIndex}.${field}`, '', {
+        shouldValidate: false,
+        shouldDirty: true
+      });
+    } else {
+      const numValue = parseFloat(value);
+      if (!isNaN(numValue)) {
+        setValue(`items.${itemIndex}.${field}`, numValue, {
+          shouldValidate: false,
+          shouldDirty: true
+        });
+      }
+    }
+    
+    calculateTotal(itemIndex, field, value);
+  };
+
+  // Handle blur to format number
+  const handleNumberBlur = (e, itemIndex, field) => {
+    let value = e.target.value;
+    
+    if (value === '' || value === '-') {
+      setValue(`items.${itemIndex}.${field}`, 0, {
+        shouldValidate: false,
+        shouldDirty: true
+      });
+    } else {
+      const numValue = parseFloat(value);
+      if (!isNaN(numValue)) {
+        setValue(`items.${itemIndex}.${field}`, numValue, {
+          shouldValidate: false,
+          shouldDirty: true
+        });
+      }
+    }
+  };
+
+  // Prevent wheel scroll from changing value
+  const preventWheelChange = (e) => {
+    e.target.blur();
+  };
+
   // Helper function to get current specifications for display
   const getSpecifications = (itemIndex) => {
     return getValues(`items.${itemIndex}.specifications`) || [''];
+  };
+
+  // Get current value for display
+  const getFieldValue = (itemIndex, field) => {
+    const value = getValues(`items.${itemIndex}.${field}`);
+    return value === 0 || value === '0' ? '' : value;
   };
 
   return (
@@ -176,8 +239,11 @@ export default function ItemsForm() {
                     <input
                       type="number"
                       {...register(`items.${itemIndex}.qty`)}
-                      onChange={(e) => calculateTotal(itemIndex, 'qty', e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                      value={getFieldValue(itemIndex, 'qty')}
+                      onChange={(e) => handleNumberChange(e, itemIndex, 'qty')}
+                      onBlur={(e) => handleNumberBlur(e, itemIndex, 'qty')}
+                      onWheel={preventWheelChange}
+                      className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       min="1"
                       step="1"
                     />
@@ -191,10 +257,13 @@ export default function ItemsForm() {
                       <input
                         type="number"
                         {...register(`items.${itemIndex}.price`)}
-                        onChange={(e) => calculateTotal(itemIndex, 'price', e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        value={getFieldValue(itemIndex, 'price')}
+                        onChange={(e) => handleNumberChange(e, itemIndex, 'price')}
+                        onBlur={(e) => handleNumberBlur(e, itemIndex, 'price')}
+                        onWheel={preventWheelChange}
+                        className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         min="0"
-                        step="0.01"
+                        step="1"
                       />
                     </div>
                   ) : (
@@ -205,10 +274,13 @@ export default function ItemsForm() {
                       <input
                         type="number"
                         {...register(`items.${itemIndex}.totalWithGST`)}
-                        onChange={(e) => calculateTotal(itemIndex, 'totalWithGST', e.target.value)}
-                        className="w-full p-2 border border-blue-300 rounded-lg bg-blue-50 focus:ring-2 focus:ring-blue-500"
+                        value={getFieldValue(itemIndex, 'totalWithGST')}
+                        onChange={(e) => handleNumberChange(e, itemIndex, 'totalWithGST')}
+                        onBlur={(e) => handleNumberBlur(e, itemIndex, 'totalWithGST')}
+                        onWheel={preventWheelChange}
+                        className="w-full p-2 border border-blue-300 rounded-lg bg-blue-50 focus:ring-2 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         min="0"
-                        step="0.01"
+                        step="1"
                       />
                     </div>
                   )}

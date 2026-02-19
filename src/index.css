@@ -52,3 +52,15 @@
     display: none !important;
   }
 }
+
+
+.no-break {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+
+.footer-safe {
+  page-break-before: auto;
+  break-before: auto;
+}

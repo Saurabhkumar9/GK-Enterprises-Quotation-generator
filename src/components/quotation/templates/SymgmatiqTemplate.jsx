@@ -10,118 +10,114 @@ export default function SymgmatiqTemplate({
   const lightBg = '#f3e5f5';
 
   return (
-    <div className="template-container">
+    <div className="w-full max-w-4xl mx-auto bg-white p-2 sm:p-3">
       {/* Corporate Purple Theme */}
       <div
-        className="text-white p-4 sm:p-5 mb-4 shadow-lg relative overflow-hidden rounded"
+        className="text-white p-2 sm:p-3 mb-2 shadow-lg relative overflow-hidden rounded"
         style={{
           background: primaryColor,
         }}
       >
-
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 relative z-10">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 relative z-10">
           <div>
-
-            <h1 className="text-xl sm:text-2xl font-bold mt-1">QUOTATION</h1>
+            <h1 className="text-lg sm:text-xl font-bold">QUOTATION</h1>
           </div>
-         <div
-          className="absolute  right-4 opacity-60"
-        >
-          <img
-            src="/logo/syg.png"
-            alt="Logo"
-            className="h-8 w-auto sm:h-20 object-contain"
-          />
+          <div className="absolute  right-2 opacity-60">
+            <img
+              src="/logo/syg.png"
+              alt="Logo"
+              className="h-6 w-auto sm:h-16 object-contain"
+            />
+          </div>
         </div>
-        </div>
-        <div className="flex flex-col sm:flex-row sm:justify-between mt-3 text-xs sm:text-sm opacity-90 gap-1">
+        <div className="flex flex-col sm:flex-row sm:justify-between mt-1.5 text-[9px] sm:text-xs opacity-90 gap-0.5">
           <span>Ref: {quotationRef}</span>
           <span>Date: {date}</span>
         </div>
       </div>
 
       {/* Customer Card */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-2">
         <div
-          className="p-3 sm:p-4 rounded-r"
+          className="p-2 sm:p-3 rounded-r"
           style={{
             background: lightBg,
             borderLeft: `4px solid ${primaryColor}`
           }}
         >
-          <h3 className="text-sm sm:text-base font-bold mb-2" style={{ color: primaryColor }}>BILL TO</h3>
-          <p className="font-bold text-sm sm:text-base">{formData.customer?.name || '_________________'}</p>
-          <p className="text-xs sm:text-sm leading-relaxed mt-1">{formData.customer?.address || '_________________'}</p>
+          <h3 className="text-xs sm:text-sm font-bold mb-1" style={{ color: primaryColor }}>BILL TO</h3>
+          <p className="font-bold text-xs sm:text-sm">{formData.customer?.name || ''}</p>
+          <p className="text-[9px] sm:text-xs leading-snug mt-0.5">{formData.customer?.address || ''}</p>
           {formData.customer?.gst && (
-            <p className="text-xs mt-1" style={{ color: primaryColor }}>GST: {formData.customer.gst}</p>
+            <p className="text-[9px] sm:text-xs mt-0.5" style={{ color: primaryColor }}>GST: {formData.customer.gst}</p>
           )}
         </div>
 
         <div
-          className="bg-white p-3 sm:p-4 border rounded"
+          className="bg-white p-2 sm:p-3 border rounded"
           style={{ borderColor: lightBg }}
         >
-          <h3 className="text-sm sm:text-base font-bold mb-2" style={{ color: primaryColor }}>DETAILS</h3>
-          <p className="text-xs sm:text-sm"><span className="font-bold">GST No:</span> {firm.gst}</p>
-          <p className="font-semibold mt-2 text-xs sm:text-sm" style={{ color: primaryColor }}>
+          <h3 className="text-xs sm:text-sm font-bold mb-1" style={{ color: primaryColor }}>DETAILS</h3>
+          <p className="text-[9px] sm:text-xs"><span className="font-bold">GST No:</span> {firm.gst}</p>
+          <p className="font-semibold mt-1 text-[9px] sm:text-xs" style={{ color: primaryColor }}>
             {firm.tradeName || firm.name}
           </p>
-          <p className="text-xs mt-1 leading-relaxed">{firm.address}</p>
-          <p className="text-xs mt-1">📞 {firm.phone.join(', ')}</p>
+          <p className="text-[8px] sm:text-[10px] mt-0.5 leading-snug">{firm.address}</p>
+          <p className="text-[8px] sm:text-[10px] mt-0.5">Ph : {firm.phone.join(', ')}</p>
         </div>
       </div>
 
       {/* Subject */}
       <div
-        className="mb-4 bg-gradient-to-r from-white to-gray-50 p-3 border-b-2"
+        className="mb-2 bg-gradient-to-r from-white to-gray-50 p-2 border-b-2"
         style={{ borderBottomColor: primaryColor }}
       >
-        <p className="font-bold text-xs sm:text-sm" style={{ color: primaryColor }}>
+        <p className="font-bold text-[9px] sm:text-xs" style={{ color: primaryColor }}>
           Subject: 
         </p>
-        <p className="mt-2 text-xs sm:text-sm">Dear Sir/Madam,</p>
-        <p className="mt-1 text-xs sm:text-sm leading-relaxed">
+        <p className="mt-1 text-[9px] sm:text-xs">Dear Sir/Madam,</p>
+        <p className="mt-0.5 text-[9px] sm:text-xs leading-snug">
           We thank you for your inquiry and are pleased to provide our most competitive quotation as detailed below:
         </p>
       </div>
 
       {/* Items Table */}
-      <div className="overflow-x-auto mb-4">
-        <table className="w-full text-xs sm:text-sm">
+      <div className="overflow-x-auto mb-2">
+        <table className="w-full text-[8px] sm:text-xs border-collapse">
           <thead>
             <tr className="text-black" style={{ background: secondaryColor }}>
-              <th className="p-2 text-center w-8 sm:w-10">#</th>
-              <th className="p-2 text-left">DESCRIPTION</th>
-              <th className="p-2 text-center w-12 sm:w-16">QTY</th>
-              <th className="p-2 text-right w-20 sm:w-24">UNIT PRICE</th>
-              <th className="p-2 text-right w-20 sm:w-24">TOTAL</th>
+              <th className="p-1 sm:p-1.5 text-center w-6 sm:w-8">#</th>
+              <th className="p-1 sm:p-1.5 text-left">DESCRIPTION</th>
+              <th className="p-1 sm:p-1.5 text-center w-10 sm:w-12">QTY</th>
+              <th className="p-1 sm:p-1.5 text-right w-16 sm:w-20">UNIT PRICE</th>
+              <th className="p-1 sm:p-1.5 text-right w-16 sm:w-20">TOTAL</th>
             </tr>
           </thead>
           <tbody>
             {items.length > 0 ? items.map((item, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-purple-50'}>
-                <td className="p-2 border text-center">{index + 1}</td>
-                <td className="p-2 border">
-                  <span className="font-bold text-xs sm:text-sm" style={{ color: primaryColor }}>
-                    {item.description || '_________________'}
+              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-purple-50/30'}>
+                <td className="p-1 sm:p-1.5 border border-gray-300 text-center align-top">{index + 1}</td>
+                <td className="p-1 sm:p-1.5 border border-gray-300">
+                  <span className="font-bold text-[8px] sm:text-xs" style={{ color: primaryColor }}>
+                    {item.description || ''}
                   </span>
                   {item.specifications?.filter(s => s && s.trim()).length > 0 && (
-                    <div className="mt-1">
+                    <div className="mt-0.5 space-y-0.5">
                       {item.specifications.map((spec, i) =>
                         spec && spec.trim() && (
-                          <div key={i} className="ml-2 sm:ml-4 text-xs text-gray-600">• {spec}</div>
+                          <div key={i} className="ml-1.5 sm:ml-2 text-[7px] sm:text-[9px] text-gray-600">• {spec}</div>
                         )
                       )}
                     </div>
                   )}
                 </td>
-                <td className="p-2 border text-center">{item.qty}</td>
-                <td className="p-2 border text-right">₹{Number(item.price || 0).toFixed(2)}</td>
-                <td className="p-2 border text-right">₹{((item.qty || 0) * (item.price || 0)).toFixed(2)}</td>
+                <td className="p-1 sm:p-1.5 border border-gray-300 text-center align-top">{item.qty}</td>
+                <td className="p-1 sm:p-1.5 border border-gray-300 text-right align-top">₹{Number(item.price || 0).toFixed(2)}</td>
+                <td className="p-1 sm:p-1.5 border border-gray-300 text-right align-top">₹{((item.qty || 0) * (item.price || 0)).toFixed(2)}</td>
               </tr>
             )) : (
               <tr>
-                <td colSpan="5" className="p-4 text-center text-gray-400 border">
+                <td colSpan="5" className="p-3 text-center text-gray-400 border border-gray-300">
                   No items added
                 </td>
               </tr>
@@ -130,29 +126,29 @@ export default function SymgmatiqTemplate({
             {items.length > 0 && (
               <>
                 <tr>
-                  <td colSpan="4" className="p-2 border text-right font-bold">Sub-Total</td>
-                  <td className="p-2 border text-right font-bold">₹{subTotal.toFixed(2)}</td>
+                  <td colSpan="4" className="p-1 sm:p-1.5 border border-gray-300 text-right font-bold">Sub-Total</td>
+                  <td className="p-1 sm:p-1.5 border border-gray-300 text-right font-bold">₹{subTotal.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td colSpan="4" className="p-2 border text-right font-bold">GST @ 18%</td>
-                  <td className="p-2 border text-right font-bold">₹{gstAmount.toFixed(2)}</td>
+                  <td colSpan="4" className="p-1 sm:p-1.5 border border-gray-300 text-right font-bold">GST @ 18%</td>
+                  <td className="p-1 sm:p-1.5 border border-gray-300 text-right font-bold">₹{gstAmount.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td colSpan="4" className="p-2 border text-right font-bold">Round Off</td>
-                  <td className="p-2 border text-right font-bold">₹{roundOff.toFixed(2)}</td>
+                  <td colSpan="4" className="p-1 sm:p-1.5 border border-gray-300 text-right font-bold">Round Off</td>
+                  <td className="p-1 sm:p-1.5 border border-gray-300 text-right font-bold">₹{roundOff.toFixed(2)}</td>
                 </tr>
                 <tr style={{ background: lightBg }}>
                   <td colSpan="4"
-                    className="p-3 border text-right font-bold text-sm sm:text-base"
+                    className="p-1.5 sm:p-2 border border-gray-300 text-right font-bold text-xs sm:text-sm"
                     style={{ color: primaryColor }}
                   >
                     GRAND TOTAL
                   </td>
                   <td
-                    className="p-3 border text-right font-bold text-sm sm:text-base"
+                    className="p-1.5 sm:p-2 border border-gray-300 text-right font-bold text-xs sm:text-sm"
                     style={{ color: primaryColor }}
                   >
-                    ₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                    ₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </td>
                 </tr>
               </>
@@ -164,10 +160,10 @@ export default function SymgmatiqTemplate({
       {/* Amount in Words */}
       {/* {grandTotal > 0 && (
         <div 
-          className="p-3 mb-4 rounded-r bg-gradient-to-r from-purple-50 to-white"
+          className="p-1.5 sm:p-2 mb-2 rounded-r bg-gradient-to-r from-purple-50 to-white"
           style={{ borderLeft: `4px solid ${primaryColor}` }}
         >
-          <p className="font-bold text-xs sm:text-sm" style={{ color: primaryColor }}>
+          <p className="font-bold text-[8px] sm:text-xs" style={{ color: primaryColor }}>
             Amount in words: {numberToWords(grandTotal)}
           </p>
         </div>
@@ -175,43 +171,60 @@ export default function SymgmatiqTemplate({
 
       {/* Terms and Footer */}
       <div>
-        <h3 className="text-sm sm:text-base font-bold mb-1" style={{ color: primaryColor }}>
+        <h3 className="text-xs sm:text-sm font-bold mb-4" style={{ color: primaryColor }}>
           Terms and Conditions
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-          <div className="bg-gray-50 p-2 text-xs sm:text-sm rounded">
-            <span className="font-bold" style={{ color: primaryColor }}>Payment:</span> {formData.terms?.payment || firm.defaultTerms.payment}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-2">
+          <div className="bg-gray-50 p-1.5 text-[8px] sm:text-[10px] rounded border ">
+            <span className="font-bold block mb-2" style={{ color: primaryColor }}>Payment:</span>
+            <span>{formData.terms?.payment || firm.defaultTerms.payment}</span>
           </div>
-          <div className="bg-gray-50 p-2 text-xs sm:text-sm rounded">
-            <span className="font-bold" style={{ color: primaryColor }}>Delivery:</span> {formData.terms?.delivery || firm.defaultTerms.delivery}
+          <div className="bg-gray-50 p-1.5 text-[8px] sm:text-[10px] rounded border ">
+            <span className="font-bold block mb-2" style={{ color: primaryColor }}>Delivery:</span>
+            <span>{formData.terms?.delivery || firm.defaultTerms.delivery}</span>
           </div>
         </div>
 
-        <div className="text-xs text-gray-600 mb-4 space-y-1">
-          <p>• This quotation is valid for 30 days</p>
-          <p>• Prices are subject to market fluctuations</p>
-          <p>• Delivery schedule subject to order confirmation</p>
-          <p>• This is a computer generated document</p>
+        <div className="text-[7px] sm:text-[9px] text-gray-600 mb-2 space-y-0.5 pl-1">
+          <p className="flex items-start">
+            <span className="mr-1" style={{ color: primaryColor }}>•</span>
+            This quotation is valid for 30 days
+          </p>
+          <p className="flex items-start">
+            <span className="mr-1" style={{ color: primaryColor }}>•</span>
+            Prices are subject to market fluctuations
+          </p>
+          <p className="flex items-start">
+            <span className="mr-1" style={{ color: primaryColor }}>•</span>
+            Delivery schedule subject to order confirmation
+          </p>
+          <p className="flex items-start">
+            <span className="mr-1" style={{ color: primaryColor }}>•</span>
+            This is a computer generated document
+          </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mt-4">
-          <div className="text-xs">
-            <p className="font-bold text-sm mb-2" style={{ color: primaryColor }}>Bank Details:</p>
-            <p>Bank: {firm.bankDetails.bankName}</p>
-            <p>Account No: {firm.bankDetails.accountNo}</p>
-            <p>IFSC: {firm.bankDetails.ifsc}</p>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 mt-3 pt-3 "
+             style={{ borderColor: primaryColor }}>
+          <div className="text-[7px] sm:text-[9px] space-y-0.5">
+            <p className="font-bold text-[8px] sm:text-xs mb-2" style={{ color: primaryColor }}>Bank Details:</p>
+            <p><span className="font-medium">Bank:</span> {firm.bankDetails.bankName}</p>
+            <p><span className="font-medium">Account No:</span> {firm.bankDetails.accountNo}</p>
+            <p><span className="font-medium">IFSC:</span> {firm.bankDetails.ifsc}</p>
           </div>
 
           <div className="text-center sm:text-right w-full sm:w-auto">
-            <img
-              src={firm.signature}
-              alt="signature"
-              className="max-w-[80px] sm:max-w-[100px] h-auto mx-auto sm:mx-0"
-              onError={(e) => { e.target.style.display = 'none'; }}
-            />
+            {firm.signature && (
+              <img
+                src={firm.signature}
+                alt="signature"
+                className="max-w-[60px] sm:max-w-[80px] h-auto mx-auto sm:mx-0 mb-2"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+            )}
             <p
-              className="border-t-2 pt-2 mt-2 font-bold text-xs sm:text-sm"
+              className="border-t-2 pt-1 mt-1 font-bold text-[8px] sm:text-xs inline-block"
               style={{ borderColor: primaryColor, color: primaryColor }}
             >
               For {firm.tradeName || firm.name}
@@ -219,8 +232,8 @@ export default function SymgmatiqTemplate({
           </div>
         </div>
 
-        <hr className="my-4" style={{ borderColor: primaryColor }} />
-        <p className="text-center text-xs text-gray-600">
+        <hr className="my-2 border-t-2" style={{ borderColor: primaryColor }} />
+        <p className="text-center text-[7px] sm:text-[8px] text-gray-600 leading-snug">
           {firm.address} | Phone: {firm.phone.join(', ')}
         </p>
       </div>

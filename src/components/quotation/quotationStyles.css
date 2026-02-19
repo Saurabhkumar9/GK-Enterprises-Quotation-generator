@@ -31,40 +31,40 @@
 /* Ensure proper spacing */
 .quotation-content p {
   margin: 0 0 8px 0;
-  line-height: 1.5;
+  line-height: 1;
 }
 
-.quotation-content .mt-1 { margin-top: 4px; }
-.quotation-content .mt-2 { margin-top: 8px; }
-.quotation-content .mt-3 { margin-top: 12px; }
-.quotation-content .mt-4 { margin-top: 16px; }
-.quotation-content .mt-6 { margin-top: 24px; }
+.quotation-content .mt-1 { margin-top: 3px; }
+.quotation-content .mt-2 { margin-top: 6px; }
+.quotation-content .mt-3 { margin-top: 10px; }
+.quotation-content .mt-4 { margin-top: 14px; }
+.quotation-content .mt-6 { margin-top: 20px; }
 .quotation-content .mb-1 { margin-bottom: 4px; }
-.quotation-content .mb-2 { margin-bottom: 8px; }
-.quotation-content .mb-3 { margin-bottom: 12px; }
-.quotation-content .mb-4 { margin-bottom: 16px; }
+.quotation-content .mb-2 { margin-bottom: 6px; }
+.quotation-content .mb-3 { margin-bottom: 8px; }
+.quotation-content .mb-4 { margin-bottom: 10px; }
 
 /* Responsive sizing */
 @media screen {
   .quotation-content {
-    font-size: 12px;
+    font-size: 10px;
   }
   
-  .quotation-content .text-xs { font-size: 12px; }
-  .quotation-content .text-sm { font-size: 14px; }
-  .quotation-content .text-base { font-size: 16px; }
-  .quotation-content .text-lg { font-size: 18px; }
+  .quotation-content .text-xs { font-size: 10px; }
+  .quotation-content .text-sm { font-size: 12px; }
+  .quotation-content .text-base { font-size: 14px; }
+  .quotation-content .text-lg { font-size: 16px; }
 }
 
 /* PDF optimization */
 .pdf-optimized {
-  padding: 20px !important;
+  padding: 16px !important;
   background: white !important;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
 }
 
 .pdf-optimized * {
-  line-height: 1.5 !important;
+  line-height: 1 !important;
 }
 
 /* Ensure no content is cut off */
