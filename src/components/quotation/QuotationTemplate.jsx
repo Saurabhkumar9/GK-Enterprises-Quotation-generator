@@ -40,13 +40,28 @@ export default function QuotationTemplate({ firmId }) {
     }
   }, [firm?.quotationPrefix]);
 
-  const date = new Date().toLocaleString('en-GB', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+  // Format date from form or use current date (DATE ONLY - NO TIME)
+  const getFormattedDate = () => {
+    const selectedDate = formData.quotationDate;
+    
+    if (selectedDate) {
+      const date = new Date(selectedDate);
+      return date.toLocaleDateString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+    }
+    
+    // Fallback to current date if no date selected
+    return new Date().toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
+
+  const date = getFormattedDate();
 
   const handleDownloadPDF = useCallback(async () => {
     if (isGenerating) return;
@@ -136,7 +151,7 @@ export default function QuotationTemplate({ firmId }) {
       firm,
       formData,
       quotationRef,
-      date,
+      date, // Now this is only date, no time
       items,
       subTotal,
       gstAmount,
