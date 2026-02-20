@@ -30,7 +30,7 @@ export default function SymgmatiqTemplate({
 
     {/* Center - Company Name */}
     <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
-      <h2 className="text-sm sm:text-lg font-bold  tracking-wide" style={{ color: primaryColor }}>
+      <h2 className="text-xl sm:text-xl font-bold  tracking-wide" style={{ color: primaryColor }}>
         SYGMATIQ TECHNOSOFT PVT. LTD.
       </h2>
       <p className="text-[2px] sm:text-xs text-black font-medium tracking-wider">
@@ -43,7 +43,7 @@ export default function SymgmatiqTemplate({
       <img
         src="/logo/syg.png"
         alt="Logo"
-        className="h-10 sm:h-16 w-auto object-contain"
+        className="h-10 sm:h-28 w-auto object-contain"
       />
     </div>
   </div>

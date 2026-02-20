@@ -49,7 +49,7 @@ export default function AnkitTemplate({
             className="text-black  inline-block px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold mb-1"
             // style={{ background: primaryColor }}
           >
-            CUSTOMER
+            CUSTOMER DETAILS:
           </div>
           <p className="font-bold text-[10px] sm:text-xs">To,</p>
           <p className="font-bold text-xs sm:text-sm mt-2" style={{ color: primaryColor }}>

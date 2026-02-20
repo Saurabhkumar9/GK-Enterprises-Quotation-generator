@@ -31,7 +31,7 @@ export default function SaurabhTemplate({
             <img
               src="/logo/guru.png"
               alt="Logo"
-              className="h-6 w-auto sm:h-16 object-contain"
+              className="h-6 w-auto sm:h-28 object-contain"
             />
           </div>
         </div>

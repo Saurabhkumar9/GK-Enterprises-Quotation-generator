@@ -12,8 +12,8 @@ export default function SwatiTemplate({
   return (
     <div className="w-full max-w-4xl mx-auto bg-white p-2 sm:p-3">
       {/* Header */}
-      <div className="border-2 p-2 sm:p-3 mb-2 rounded-t-xl rounded-br-xl relative shadow-sm"
-        style={{ borderColor: primaryColor, background: lightBg }}
+      <div className="border-2 p-2 sm:p-3 mb-2 rounded-t-xl rounded-br-xl bg-[#5eddbf] relative shadow-sm"
+        style={{ borderColor: primaryColor }}
       >
         <div className="absolute top-2 right-3 opacity-60">
           <img
@@ -23,8 +23,8 @@ export default function SwatiTemplate({
           />
         </div>
 
-        <h2 className="text-center text-lg sm:text-xl font-light tracking-wider uppercase"
-          style={{ color: primaryColor }}>
+        <h2 className="text-center text-xl font-bold sm:text-xl  tracking-wider uppercase"
+          style={{ color: 'black' }}>
           Quotation
         </h2>
 
@@ -43,7 +43,7 @@ export default function SwatiTemplate({
           >
           <div className="inline-block text-black px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full text-[9px] sm:text-xs mb-1"
             >
-            CUSTOMER :
+            CUSTOMER DETAILS:
           </div>
 
           <p className="font-semibold text-[10px] sm:text-xs">To,</p>
