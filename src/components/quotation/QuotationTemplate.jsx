@@ -19,7 +19,6 @@ export default function QuotationTemplate({ firmId }) {
   const { watch } = useFormContext();
   const formData = watch();
   const [quotationRef, setQuotationRef] = useState('');
-  const refGenerated = useRef(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
   // Access the firms array from the imported JSON
@@ -33,12 +32,12 @@ export default function QuotationTemplate({ firmId }) {
   const items = formData.items || [];
   const { subTotal, gstAmount, finalAmount, grandTotal, roundOff } = calculateTotals(items);
 
+  // Generate new reference whenever firm changes
   useEffect(() => {
-    if (!refGenerated.current && firm?.quotationPrefix) {
-      setQuotationRef(generateQuotationRef(firm.quotationPrefix));
-      refGenerated.current = true;
+    if (firm) {
+      setQuotationRef(generateQuotationRef(firm));
     }
-  }, [firm?.quotationPrefix]);
+  }, [firm, firmId]);
 
   // Format date from form or use current date (DATE ONLY - NO TIME)
   const getFormattedDate = () => {
@@ -50,7 +49,7 @@ export default function QuotationTemplate({ firmId }) {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric'
-      });
+      }).replace(/\//g, '/');
     }
     
     // Fallback to current date if no date selected
@@ -58,7 +57,7 @@ export default function QuotationTemplate({ firmId }) {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric'
-    });
+    }).replace(/\//g, '/');
   };
 
   const date = getFormattedDate();
@@ -151,7 +150,7 @@ export default function QuotationTemplate({ firmId }) {
       firm,
       formData,
       quotationRef,
-      date, // Now this is only date, no time
+      date,
       items,
       subTotal,
       gstAmount,
