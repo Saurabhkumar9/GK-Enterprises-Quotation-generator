@@ -255,14 +255,14 @@ export default function SwanviTemplate({
           </div>
 
           <div className="text-center sm:text-right w-full sm:w-auto">
-            {firm.signature && (
+            {/* {firm.signature && (
               <img
                 src={firm.signature}
                 alt="signature"
                 className="max-w-[80px] sm:max-w-[100px] h-auto mx-auto sm:mx-0 mb-1"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
-            )}
+            )} */}
             <p 
               className="border-t-2 pt-1.5 mt-1.5 font-bold text-xs sm:text-sm inline-block"
               style={{ borderColor: primaryColor, color: primaryColor }}

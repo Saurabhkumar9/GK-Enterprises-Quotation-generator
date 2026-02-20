@@ -254,14 +254,14 @@ export default function SwatiTemplate({
           </div>
 
           <div className="text-center sm:text-right w-full sm:w-auto">
-            {firm.signature && (
+            {/* {firm.signature && (
               <img
                 src={firm.signature}
                 alt="signature"
                 className="max-w-[60px] sm:max-w-[80px] mx-auto sm:mx-0 mt-2"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
-            )}
+            )} */}
             <p className="border-t-2 pt-1 mt-1 font-medium text-[8px] sm:text-xs inline-block"
               style={{ borderColor: primaryColor, color: primaryColor }}>
               For {firm.tradeName || firm.name}

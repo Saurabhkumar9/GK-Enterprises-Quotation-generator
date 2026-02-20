@@ -8,7 +8,7 @@ export default function GKTemplate({
   return (
     <>
       {/* Header with Firm Initials - Always on Right */}
-      <div className="absolute top-[25px] right-[25px] text-red-700 text-4xl font-bold z-10 tracking-wide">
+      <div className="absolute top-[25px] right-[25px] text-red-700 text-5xl font-bold z-10 tracking-wide">
         {firm.initials}
       </div>
 
@@ -168,14 +168,14 @@ export default function GKTemplate({
 
           <div className="text-center ">
             <div className="mt-2">
-              <img
+              {/* <img
                 src={firm.signature}
                 alt="signature"
                 className="max-w-[96px] h-auto mx-auto"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
-              />
+              /> */}
               <p className="border-t border-black pt-1 mt-1 w-32 mx-auto">
                 For {firm.tradeName || firm.name}
               </p>
