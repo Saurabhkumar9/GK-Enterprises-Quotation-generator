@@ -15,45 +15,45 @@ export default function SymgmatiqTemplate({
     <div className="w-full max-w-4xl mx-auto bg-white p-2 sm:p-3">
       {/* Header with white background to make red logo pop */}
       <div
-  className="p-2 sm:p-3 mb-2 bg-white shadow-md relative rounded overflow-hidden border-b-2"
-  style={{ borderBottomColor: primaryColor }}
->
-  <div className="relative flex items-center justify-between">
+        className="p-2 sm:p-3 mb-2 bg-white shadow-md relative rounded overflow-hidden border-b-2"
+        style={{ borderBottomColor: primaryColor }}
+      >
+        <div className="relative flex items-center justify-between">
 
-    {/* Left Side - QUOTATION */}
-    <h1
-      className="text-lg sm:text-xl font-bold z-10"
-      style={{ color: primaryColor }}
-    >
-      QUOTATION
-    </h1>
+          {/* Left Side - QUOTATION */}
+          <h1
+            className="text-lg sm:text-xl font-bold z-10"
+            style={{ color: primaryColor }}
+          >
+            QUOTATION
+          </h1>
 
-    {/* Center - Company Name */}
-    <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
-      <h2 className="text-xl sm:text-xl font-bold  tracking-wide" style={{ color: primaryColor }}>
-        SYGMATIQ TECHNOSOFT PVT. LTD.
-      </h2>
-      <p className="text-[2px] sm:text-xs text-black font-medium tracking-wider">
-        BETTER SERVICE, BETTER PRODUCT
-      </p>
-    </div>
+          {/* Center - Company Name */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+            <h2 className="text-xl sm:text-xl font-bold  tracking-wide" style={{ color: primaryColor }}>
+              SYGMATIQ TECHNOSOFT PVT. LTD.
+            </h2>
+            <p className="text-[2px] sm:text-xs text-black font-medium tracking-wider">
+              BETTER SERVICE, BETTER PRODUCT
+            </p>
+          </div>
 
-    {/* Right Side - Logo */}
-    <div className="z-10">
-      <img
-        src="/logo/syg.png"
-        alt="Logo"
-        className="h-10 sm:h-28 w-auto object-contain"
-      />
-    </div>
-  </div>
+          {/* Right Side - Logo */}
+          <div className="z-10">
+            <img
+              src="/logo/syg.png"
+              alt="Logo"
+              className="h-10 sm:h-28 w-auto object-contain"
+            />
+          </div>
+        </div>
 
-  {/* Bottom Info Row */}
-  <div className="flex flex-col sm:flex-row sm:justify-between mt-2 text-[9px] sm:text-xs text-gray-600 gap-0.5">
-    <span>Ref: {quotationRef}</span>
-    <span>Date: {date}</span>
-  </div>
-</div>
+        {/* Bottom Info Row */}
+        <div className="flex flex-col sm:flex-row sm:justify-between mt-2 text-[9px] sm:text-xs text-gray-600 gap-0.5">
+          <span>Ref: {quotationRef}</span>
+          <span>Date: {date}</span>
+        </div>
+      </div>
 
 
       {/* Customer Card */}
@@ -67,7 +67,9 @@ export default function SymgmatiqTemplate({
         >
           <h3 className="text-xs sm:text-sm font-bold mb-1" style={{ color: primaryColor }}>CUSTOMER DETAILS:</h3>
           <p className="font-bold text-xs sm:text-sm">{formData.customer?.name || ''}</p>
-          <p className="text-[9px] sm:text-xs leading-snug mt-0.5">{formData.customer?.address || ''}</p>
+          <p className="whitespace-pre-line">
+            {(formData.customer?.address || '').replace(/,\s*/g, '\n')}
+          </p>
           {formData.customer?.gst && (
             <p className="text-[9px] sm:text-xs mt-0.5" style={{ color: primaryColor }}>GST: {formData.customer.gst}</p>
           )}
@@ -93,7 +95,7 @@ export default function SymgmatiqTemplate({
         style={{ borderBottomColor: primaryColor }}
       >
         <p className="font-bold text-[9px] sm:text-xs" style={{ color: primaryColor }}>
-          Subject: 
+          Subject:
         </p>
         <p className="mt-1 text-[9px] sm:text-xs">Dear Sir/Madam,</p>
         <p className="mt-0.5 text-[9px] sm:text-xs leading-snug">
@@ -226,7 +228,7 @@ export default function SymgmatiqTemplate({
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 mt-3 pt-3 "
-             style={{ borderColor: primaryColor }}>
+          style={{ borderColor: primaryColor }}>
           <div className="text-[7px] sm:text-[9px] space-y-0.5">
             <p className="font-bold text-[8px] sm:text-xs mb-2" style={{ color: primaryColor }}>Bank Details:</p>
             <p><span className="font-medium">Bank:</span> {firm.bankDetails.bankName}</p>

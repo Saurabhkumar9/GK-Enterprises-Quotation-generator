@@ -55,9 +55,9 @@ export default function AnkitTemplate({
           <p className="font-bold text-xs sm:text-sm mt-2" style={{ color: primaryColor }}>
             {formData.customer?.name || ''}
           </p>
-          <p className="text-[10px] sm:text-xs mt-2 leading-snug">
-            {formData.customer?.address || ''}
-          </p>
+          <p className="whitespace-pre-line">
+  {(formData.customer?.address || '').replace(/,\s*/g, '\n')}
+</p>
           {formData.customer?.gst && (
             <p className="mt-1 text-[10px] sm:text-xs">
               GST: {formData.customer.gst}

@@ -51,9 +51,9 @@ export default function SwatiTemplate({
             style={{ color: primaryColor }}>
             {formData.customer?.name || ''}
           </p>
-          <p className="mt-1 text-[9px] sm:text-xs leading-snug">
-            {formData.customer?.address || ''}
-          </p>
+          <p className="whitespace-pre-line">
+  {(formData.customer?.address || '').replace(/,\s*/g, '\n')}
+</p>
 
           {formData.customer?.gst && (
             <p className="mt-1 text-[9px] sm:text-xs">

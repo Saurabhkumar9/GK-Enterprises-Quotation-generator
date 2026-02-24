@@ -50,9 +50,9 @@ export default function SwanviTemplate({
             >
               {formData.customer?.name || ''}
             </p>
-            <p className="leading-snug mt-1 text-[10px] sm:text-xs">
-              {formData.customer?.address || ''}
-            </p>
+            <p className="whitespace-pre-line">
+  {(formData.customer?.address || '').replace(/,\s*/g, '\n')}
+</p>
             {formData.customer?.gst && (
               <p className="mt-1.5 text-[10px] sm:text-xs font-medium">
                 <span className="font-bold" style={{ color: primaryColor }}>GST:</span> {formData.customer.gst}

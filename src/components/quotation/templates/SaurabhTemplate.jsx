@@ -70,9 +70,9 @@ export default function SaurabhTemplate({
             <p className="font-medium text-xs sm:text-sm">
               {formData.customer?.name || ''}
             </p>
-            <p className="text-[9px] sm:text-xs mt-2 leading-snug">
-              {formData.customer?.address || ''}
-            </p>
+            <p className="whitespace-pre-line">
+  {(formData.customer?.address || '').replace(/,\s*/g, '\n')}
+</p>
             {formData.customer?.gst && (
               <p className="text-[9px] sm:text-xs mt-2" style={{ color: primaryColor }}>
                 GST: {formData.customer.gst}

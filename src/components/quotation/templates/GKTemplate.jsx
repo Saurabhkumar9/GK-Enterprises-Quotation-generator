@@ -27,7 +27,9 @@ export default function GKTemplate({
           <p className="font-bold mb-2">CUSTOMER DETAILS:</p>
           <p className="font-bold">To,</p>
           <p className="font-bold">{formData.customer?.name || ''}</p>
-          <p>{formData.customer?.address || ''}</p>
+          <p className="whitespace-pre-line">
+  {(formData.customer?.address || '').replace(/,\s*/g, '\n')}
+</p>
           {formData.customer?.gst && (
             <p>GST: {formData.customer.gst}</p>
           )}
